@@ -13,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aspire", "aspire", "{C74F40
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.ServiceDefaults", "src\OpenTelemetry.Demo.ServiceDefaults\OpenTelemetry.Demo.ServiceDefaults.csproj", "{840311D0-C16C-4EC2-B3E1-65825866F7B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketProcessor", "src\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj", "{26252B41-0DE0-4124-B887-272BD8143DBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketApi", "src\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj", "{291F955C-41F2-4C06-8587-908DCCD59A44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{B32A3A52-0384-491A-9643-036D33FE822A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,15 +37,26 @@ Global
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26252B41-0DE0-4124-B887-272BD8143DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26252B41-0DE0-4124-B887-272BD8143DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26252B41-0DE0-4124-B887-272BD8143DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26252B41-0DE0-4124-B887-272BD8143DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{291F955C-41F2-4C06-8587-908DCCD59A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291F955C-41F2-4C06-8587-908DCCD59A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291F955C-41F2-4C06-8587-908DCCD59A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291F955C-41F2-4C06-8587-908DCCD59A44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{78651DFC-945B-46D0-AECF-26D065394DA9} = {49960C64-F5C9-4D2B-92C0-9D430ADDD709}
 		{C74F4012-B5D3-4501-B724-FDE227537E6D} = {49960C64-F5C9-4D2B-92C0-9D430ADDD709}
 		{F0D234DB-4144-4532-B37E-27E3E279A081} = {C74F4012-B5D3-4501-B724-FDE227537E6D}
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8} = {C74F4012-B5D3-4501-B724-FDE227537E6D}
+		{B32A3A52-0384-491A-9643-036D33FE822A} = {49960C64-F5C9-4D2B-92C0-9D430ADDD709}
+		{291F955C-41F2-4C06-8587-908DCCD59A44} = {B32A3A52-0384-491A-9643-036D33FE822A}
+		{26252B41-0DE0-4124-B887-272BD8143DBC} = {B32A3A52-0384-491A-9643-036D33FE822A}
+		{78651DFC-945B-46D0-AECF-26D065394DA9} = {B32A3A52-0384-491A-9643-036D33FE822A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14FD35C3-89A1-4B23-9A3F-B38B6BDF169E}

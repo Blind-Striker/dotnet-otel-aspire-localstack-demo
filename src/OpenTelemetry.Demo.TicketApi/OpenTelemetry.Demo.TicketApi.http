@@ -1,0 +1,6 @@
+@OpenTelemetry.Demo.TicketApi_HostAddress = http://localhost:5170
+
+GET {{OpenTelemetry.Demo.TicketApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
