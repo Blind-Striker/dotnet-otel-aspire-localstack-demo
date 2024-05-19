@@ -4,38 +4,19 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- third-party analyzers -->
-    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.152">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
+    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.152"/>
     <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
-    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.10.48">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
-    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.12.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
-    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.12.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0"/>
+    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.10.48"/>
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.3"/>
+    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.12.3"/>
+    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.12.3"/>
     <PackageVersion Include="SecurityCodeScan.VS2019" Version="5.6.7" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.0.90414">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageVersion>
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.0.90414"/>
     <!-- Microsoft AspNetCore dependencies -->
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.3.0"/>
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.7.24251.11" />
     <!-- Open Telemetry dependencies -->
     <PackageVersion Include="OpenTelemetry" Version="1.8.1" />
     <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.8.1" />
@@ -47,8 +28,11 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.11" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.8.0-beta.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.8.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.8.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.8.0-beta.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.0.0-rc9.14" />
+    <!-- Aspire depedencies-->
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.7.24251.11" />
     <!-- 3rd dependencies -->
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.6.1" />
   </ItemGroup>
