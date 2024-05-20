@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OpenTelemetry.Demo.Infrastructure\OpenTelemetry.Demo.Infrastructure.csproj" />
     <ProjectReference Include="..\OpenTelemetry.Demo.ServiceDefaults\OpenTelemetry.Demo.ServiceDefaults.csproj" />
   </ItemGroup>
 

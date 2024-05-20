@@ -16,7 +16,7 @@ root = true
 [*]
 indent_style = space
 charset = utf-8-bom
-trim_trailing_whitespace = false
+trim_trailing_whitespace = true
 insert_final_newline = false
 max_line_length = 180
 spelling_exclusion_path = spelling.dic
@@ -36,7 +36,7 @@ dotnet_naming_rule.unity_serialized_field_rule.style = lower_camel_case_style
 dotnet_naming_rule.unity_serialized_field_rule.symbols = unity_serialized_field_symbols
 dotnet_naming_style.lower_camel_case_style.capitalization = camel_case
 dotnet_naming_symbols.unity_serialized_field_symbols.applicable_accessibilities = *
-dotnet_naming_symbols.unity_serialized_field_symbols.applicable_kinds = 
+dotnet_naming_symbols.unity_serialized_field_symbols.applicable_kinds =
 dotnet_naming_symbols.unity_serialized_field_symbols.resharper_applicable_kinds = unity_serialised_field
 dotnet_naming_symbols.unity_serialized_field_symbols.resharper_required_modifiers = instance
 dotnet_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary:none
@@ -387,7 +387,7 @@ dotnet_diagnostic.ide0062.severity = warning
 
 # IDE0073: File header
 dotnet_diagnostic.ide0073.severity = warning
-file_header_template = Licensed to the .NET Foundation under one or more agreements.\nThe .NET Foundation licenses this file to you under the MIT license.
+# file_header_template = Licensed to the .NET Foundation under one or more agreements.\nThe .NET Foundation licenses this file to you under the MIT license.
 
 # IDE1006: Required naming style
 dotnet_diagnostic.ide1006.severity = warning

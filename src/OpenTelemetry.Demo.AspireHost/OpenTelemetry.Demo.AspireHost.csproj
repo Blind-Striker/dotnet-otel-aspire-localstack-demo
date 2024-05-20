@@ -2,18 +2,18 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <TargetFramework>$(NetCurrent)</TargetFramework>
     <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>94576410-C351-49B0-BC6E-C9945BF94B52</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost"/>
+    <PackageReference Include="Aspire.Hosting.SqlServer" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\local\OpenTelemetry.Demo.Local.Database\OpenTelemetry.Demo.Local.Database.csproj" />
     <ProjectReference Include="..\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj" />
     <ProjectReference Include="..\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj" />
     <ProjectReference Include="..\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj"/>

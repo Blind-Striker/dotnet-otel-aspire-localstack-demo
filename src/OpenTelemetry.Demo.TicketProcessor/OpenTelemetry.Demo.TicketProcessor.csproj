@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(NetCurrent)</TargetFramework>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\OpenTelemetry.Demo.ServiceDefaults\OpenTelemetry.Demo.ServiceDefaults.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenTelemetry.Demo.Infrastructure\OpenTelemetry.Demo.Infrastructure.csproj" />
+    <ProjectReference Include="..\OpenTelemetry.Demo.ServiceDefaults\OpenTelemetry.Demo.ServiceDefaults.csproj" />
+  </ItemGroup>
 
 </Project>

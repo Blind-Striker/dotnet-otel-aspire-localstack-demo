@@ -4,21 +4,29 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- third-party analyzers -->
-    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.152"/>
+    <PackageVersion Include="FluentAssertions.Analyzers" Version="0.31.0" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.152" />
     <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0"/>
-    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.10.48"/>
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.3"/>
-    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.12.3"/>
-    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.12.3"/>
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.9.2" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.10.48" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.3" />
+    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.12.3" />
+    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.12.3" />
     <PackageVersion Include="SecurityCodeScan.VS2019" Version="5.6.7" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.0.90414"/>
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.0.90414" />
+    <PackageVersion Include="xunit.analyzers" Version="1.13.0" />
     <!-- Microsoft AspNetCore dependencies -->
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.3.0"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.3.0" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.7.24251.11" />
     <!-- Open Telemetry dependencies -->
     <PackageVersion Include="OpenTelemetry" Version="1.8.1" />
+    <PackageVersion Include="OpenTelemetry.Api" Version="1.8.1" />
     <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.8.1" />
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.8.1" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.8.1" />
@@ -33,7 +41,20 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.0.0-rc9.14" />
     <!-- Aspire depedencies-->
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.7.24251.11" />
+    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="8.0.0-preview.7.24251.11" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.7.24251.11" />
     <!-- 3rd dependencies -->
+    <PackageVersion Include="FluentValidation" Version="11.9.1" />
+    <PackageVersion Include="OneOf" Version="3.0.271" />
+    <PackageVersion Include="OneOf.SourceGenerator" Version="3.0.271" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.6.1" />
+    <!-- Testing depdencies-->
+    <PackageVersion Include="FluentAssertions" Version="6.12.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageVersion Include="Moq" Version="4.20.70" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageVersion Include="xunit" Version="2.8.0" />
+    <PackageVersion Include="xunit.runner.console" Version="2.8.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.0" />
   </ItemGroup>
 </Project>
