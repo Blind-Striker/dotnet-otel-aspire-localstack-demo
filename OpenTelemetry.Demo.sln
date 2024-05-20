@@ -3,19 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenTelemetry.Demo.UserApi", "src\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj", "{78651DFC-945B-46D0-AECF-26D065394DA9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49960C64-F5C9-4D2B-92C0-9D430ADDD709}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.AspireHost", "src\OpenTelemetry.Demo.AspireHost\OpenTelemetry.Demo.AspireHost.csproj", "{F0D234DB-4144-4532-B37E-27E3E279A081}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aspire", "aspire", "{C74F4012-B5D3-4501-B724-FDE227537E6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.ServiceDefaults", "src\OpenTelemetry.Demo.ServiceDefaults\OpenTelemetry.Demo.ServiceDefaults.csproj", "{840311D0-C16C-4EC2-B3E1-65825866F7B8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketProcessor", "src\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj", "{26252B41-0DE0-4124-B887-272BD8143DBC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketApi", "src\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj", "{291F955C-41F2-4C06-8587-908DCCD59A44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{B32A3A52-0384-491A-9643-036D33FE822A}"
 EndProject
@@ -29,32 +21,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{6822D827
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.Local.Database", "local\OpenTelemetry.Demo.Local.Database\OpenTelemetry.Demo.Local.Database.csproj", "{87192656-5AC8-45AB-9B12-55361DD454C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.AspireHost", "local\aspire\OpenTelemetry.Demo.AspireHost\OpenTelemetry.Demo.AspireHost.csproj", "{F62656A8-FF70-492E-8DE8-AED85DADE67F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketApi", "src\services\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj", "{F68FD1B6-00A3-4A15-9A0C-B43779056BB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketProcessor", "src\services\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj", "{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.UserApi", "src\services\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj", "{245669A8-9CA4-4DDC-B03B-26857F29E8E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{78651DFC-945B-46D0-AECF-26D065394DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78651DFC-945B-46D0-AECF-26D065394DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78651DFC-945B-46D0-AECF-26D065394DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78651DFC-945B-46D0-AECF-26D065394DA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F0D234DB-4144-4532-B37E-27E3E279A081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0D234DB-4144-4532-B37E-27E3E279A081}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F0D234DB-4144-4532-B37E-27E3E279A081}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F0D234DB-4144-4532-B37E-27E3E279A081}.Release|Any CPU.Build.0 = Release|Any CPU
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26252B41-0DE0-4124-B887-272BD8143DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26252B41-0DE0-4124-B887-272BD8143DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26252B41-0DE0-4124-B887-272BD8143DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26252B41-0DE0-4124-B887-272BD8143DBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{291F955C-41F2-4C06-8587-908DCCD59A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{291F955C-41F2-4C06-8587-908DCCD59A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{291F955C-41F2-4C06-8587-908DCCD59A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{291F955C-41F2-4C06-8587-908DCCD59A44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13B20656-8F5F-4370-B9CD-9CEBBEE63143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13B20656-8F5F-4370-B9CD-9CEBBEE63143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13B20656-8F5F-4370-B9CD-9CEBBEE63143}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -67,21 +51,37 @@ Global
 		{87192656-5AC8-45AB-9B12-55361DD454C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87192656-5AC8-45AB-9B12-55361DD454C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87192656-5AC8-45AB-9B12-55361DD454C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F62656A8-FF70-492E-8DE8-AED85DADE67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F62656A8-FF70-492E-8DE8-AED85DADE67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F62656A8-FF70-492E-8DE8-AED85DADE67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F62656A8-FF70-492E-8DE8-AED85DADE67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F68FD1B6-00A3-4A15-9A0C-B43779056BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F68FD1B6-00A3-4A15-9A0C-B43779056BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F68FD1B6-00A3-4A15-9A0C-B43779056BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F68FD1B6-00A3-4A15-9A0C-B43779056BB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F0D234DB-4144-4532-B37E-27E3E279A081} = {C74F4012-B5D3-4501-B724-FDE227537E6D}
-		{840311D0-C16C-4EC2-B3E1-65825866F7B8} = {C74F4012-B5D3-4501-B724-FDE227537E6D}
 		{B32A3A52-0384-491A-9643-036D33FE822A} = {49960C64-F5C9-4D2B-92C0-9D430ADDD709}
-		{291F955C-41F2-4C06-8587-908DCCD59A44} = {B32A3A52-0384-491A-9643-036D33FE822A}
-		{26252B41-0DE0-4124-B887-272BD8143DBC} = {B32A3A52-0384-491A-9643-036D33FE822A}
-		{78651DFC-945B-46D0-AECF-26D065394DA9} = {B32A3A52-0384-491A-9643-036D33FE822A}
 		{13B20656-8F5F-4370-B9CD-9CEBBEE63143} = {49960C64-F5C9-4D2B-92C0-9D430ADDD709}
 		{D2D56E0E-54F9-4452-ACE5-1A33F740121C} = {A3A90FCC-7AEC-4272-8247-2B3F500825F4}
 		{C74F4012-B5D3-4501-B724-FDE227537E6D} = {6822D827-43BE-471B-826C-5F00830688AD}
 		{87192656-5AC8-45AB-9B12-55361DD454C1} = {6822D827-43BE-471B-826C-5F00830688AD}
+		{F62656A8-FF70-492E-8DE8-AED85DADE67F} = {C74F4012-B5D3-4501-B724-FDE227537E6D}
+		{840311D0-C16C-4EC2-B3E1-65825866F7B8} = {49960C64-F5C9-4D2B-92C0-9D430ADDD709}
+		{F68FD1B6-00A3-4A15-9A0C-B43779056BB7} = {B32A3A52-0384-491A-9643-036D33FE822A}
+		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8} = {B32A3A52-0384-491A-9643-036D33FE822A}
+		{245669A8-9CA4-4DDC-B03B-26857F29E8E3} = {B32A3A52-0384-491A-9643-036D33FE822A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14FD35C3-89A1-4B23-9A3F-B38B6BDF169E}

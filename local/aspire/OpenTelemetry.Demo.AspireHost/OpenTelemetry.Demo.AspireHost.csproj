@@ -18,10 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\local\OpenTelemetry.Demo.Local.Database\OpenTelemetry.Demo.Local.Database.csproj"/>
-    <ProjectReference Include="..\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj"/>
-    <ProjectReference Include="..\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj"/>
-    <ProjectReference Include="..\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj"/>
+    <ProjectReference Include="..\..\..\src\services\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj" />
+    <ProjectReference Include="..\..\..\src\services\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj" />
+    <ProjectReference Include="..\..\..\src\services\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj" />
+    <ProjectReference Include="..\..\OpenTelemetry.Demo.Local.Database\OpenTelemetry.Demo.Local.Database.csproj" />
   </ItemGroup>
 
 </Project>
