@@ -9,13 +9,18 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost"/>
-    <PackageReference Include="Aspire.Hosting.SqlServer" />
+    <PackageReference Include="Aspire.Hosting.SqlServer"/>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL"/>
+
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer"/>
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql"/>
+    <PackageReference Include="AspNetCore.HealthChecks.Uris"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\local\OpenTelemetry.Demo.Local.Database\OpenTelemetry.Demo.Local.Database.csproj" />
-    <ProjectReference Include="..\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj" />
-    <ProjectReference Include="..\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj" />
+    <ProjectReference Include="..\..\local\OpenTelemetry.Demo.Local.Database\OpenTelemetry.Demo.Local.Database.csproj"/>
+    <ProjectReference Include="..\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj"/>
+    <ProjectReference Include="..\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj"/>
     <ProjectReference Include="..\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj"/>
   </ItemGroup>
 

@@ -12,10 +12,10 @@ public class EventSystemDbContext(DbContextOptions<EventSystemDbContext> options
 
         // User entity configuration
         modelBuilder.Entity<UserEntity>()
-            .HasKey("_id");
+            .HasKey(entity => entity.Id);
         modelBuilder.Entity<UserEntity>()
-            .Property("_id")
-            .ValueGeneratedOnAdd(); // Ensures ID is auto-increment
+            .Property(entity => entity.Id)
+            .ValueGeneratedOnAdd();
 
         modelBuilder.Entity<UserEntity>()
             .Property(u => u.Email)
@@ -23,10 +23,10 @@ public class EventSystemDbContext(DbContextOptions<EventSystemDbContext> options
 
         // Event entity configuration
         modelBuilder.Entity<EventEntity>()
-            .HasKey("_id");
+            .HasKey(entity => entity.Id);
         modelBuilder.Entity<EventEntity>()
-            .Property("_id")
-            .ValueGeneratedOnAdd(); // Ensures ID is auto-increment
+            .Property(entity => entity.Id)
+            .ValueGeneratedOnAdd();
 
         // Registration entity configuration
         modelBuilder.Entity<RegistrationEntity>()
@@ -41,16 +41,5 @@ public class EventSystemDbContext(DbContextOptions<EventSystemDbContext> options
             .HasOne(r => r.EventEntity)
             .WithMany(e => e.Registrations)
             .HasForeignKey(r => r.EventId);
-
-        // modelBuilder.Metadata.FindNavigation(nameof(UserEntity.Registrations))
-        //     .SetPropertyAccessMode(PropertyAccessMode.Field);
-        //
-        // modelBuilder.Metadata.FindNavigation(nameof(EventEntity.Registrations))
-        //     .SetPropertyAccessMode(PropertyAccessMode.Field);
-
-        // If Registration had its own primary key
-        // modelBuilder.Entity<Registration>()
-        //     .Property(r => r.SomeId)
-        //     .ValueGeneratedOnAdd();  // If you have a separate primary key for Registration
     }
 }

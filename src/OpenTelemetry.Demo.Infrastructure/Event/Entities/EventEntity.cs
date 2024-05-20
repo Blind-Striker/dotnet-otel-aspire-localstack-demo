@@ -4,25 +4,26 @@ namespace OpenTelemetry.Demo.Infrastructure.Event.Entities;
 
 public class EventEntity
 {
-    private List<RegistrationEntity> _registrations = [];
-    private int _id;
+    private List<RegistrationEntity> _registrations;
 
     private EventEntity()
     {
+        _registrations = new List<RegistrationEntity>();
     }
 
     public EventEntity(string name, DateTime date)
+        : this()
     {
         Name = name;
         Date = date;
     }
 
-    public int Id => _id;
+    public int Id { get; private set; }
+
     public string Name { get; private set; }
     public DateTime Date { get; private set; }
 
-    [NotMapped]
-    public ImmutableList<RegistrationEntity>? Registrations => ImmutableList.Create(_registrations.ToArray());
+    public IReadOnlyCollection<RegistrationEntity> Registrations => _registrations;
 
     public void AddRegistration(UserEntity userEntity)
     {

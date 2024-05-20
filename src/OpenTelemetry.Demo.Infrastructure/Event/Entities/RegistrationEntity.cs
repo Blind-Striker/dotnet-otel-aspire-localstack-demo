@@ -8,7 +8,7 @@ public class RegistrationEntity
     {
     }
 
-    public RegistrationEntity(UserEntity userEntity, EventEntity eventEntity)
+    public RegistrationEntity(UserEntity userEntity, EventEntity eventEntity) : this()
     {
         UserId = userEntity.Id;
         EventId = eventEntity.Id;

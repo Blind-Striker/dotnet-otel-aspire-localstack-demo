@@ -1,24 +1,43 @@
+using Microsoft.Extensions.Configuration;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-var sqlResource = builder.AddSqlServer("sql");
-var eventDbResource = sqlResource.AddDatabase("eventdb");
+const string databaseName = "eventdb";
+const string databaseTypeEnv = "EventSystem:DatabaseType";
 
-var databaseInitailizerResource = builder
+var databaseType = Environment.GetEnvironmentVariable(databaseTypeEnv) ?? "npgsql";
+
+IResourceBuilder<IResourceWithConnectionString> database = databaseType switch
+{
+    "sqlserver" => builder.AddSqlServer("sql").WithHealthCheck().AddDatabase(databaseName),
+    "npgsql" => builder.AddPostgres("postgres").WithHealthCheck().WithEnvironment("POSTGRES_DB", databaseName).AddDatabase(databaseName),
+    _ => throw new InvalidOperationException($"Unsupported database type: {databaseType}")
+};
+
+var databaseInitializer = builder
     .AddProject<Projects.OpenTelemetry_Demo_Local_Database>("db-initializer")
-    .WithReference(eventDbResource);
+    .WithReference(database)
+    .WithEnvironment(databaseTypeEnv, databaseType)
+    .WaitFor(database);
 
-var ticketApiResource = builder
+var ticketApi = builder
     .AddProject<Projects.OpenTelemetry_Demo_TicketApi>("ticket-api")
-    .WithReference(eventDbResource);
+    .WithReference(database)
+    .WithEnvironment(databaseTypeEnv, databaseType)
+    .WaitFor(database);
 
-var userApiResource = builder
+var userApi = builder
     .AddProject<Projects.OpenTelemetry_Demo_UserApi>("user-api")
     .WithExternalHttpEndpoints()
-    .WithReference(ticketApiResource)
-    .WithReference(eventDbResource);
+    .WithReference(ticketApi)
+    .WithReference(database)
+    .WithEnvironment(databaseTypeEnv, databaseType)
+    .WaitFor(database);
 
-var ticketProcessorResource = builder
+var ticketProcessor = builder
     .AddProject<Projects.OpenTelemetry_Demo_TicketProcessor>("ticket-processor")
-    .WithReference(eventDbResource);
+    .WithReference(database)
+    .WithEnvironment(databaseTypeEnv, databaseType)
+    .WaitFor(database);
 
-await builder.Build().RunAsync().ConfigureAwait(false);
+await builder.Build().RunAsync();

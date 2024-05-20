@@ -7,6 +7,7 @@
     <DebugSymbols>true</DebugSymbols>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);MA0004,SCS0005</NoWarn>
   </PropertyGroup>
 
   <!-- third-party analyzers -->

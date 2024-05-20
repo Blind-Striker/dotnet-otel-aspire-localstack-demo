@@ -13,8 +13,7 @@ public sealed class DbInitializer(IServiceProvider serviceProvider, IHostApplica
         {
             await using var scope = serviceProvider.CreateAsyncScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<EventSystemDbContext>();
-
-            await EnsureDatabaseAsync(dbContext, stoppingToken).ConfigureAwait(false);
+            await EnsureDatabaseAsync(dbContext, stoppingToken);
         }
         catch (Exception ex)
         {
@@ -25,19 +24,28 @@ public sealed class DbInitializer(IServiceProvider serviceProvider, IHostApplica
         hostApplicationLifetime.StopApplication();
     }
 
-    private static async Task EnsureDatabaseAsync(DbContext dbContext, CancellationToken ct)
+    private static async Task EnsureDatabaseAsync(EventSystemDbContext dbContext, CancellationToken ct)
     {
-        var dbCreator = dbContext.GetService<IRelationalDatabaseCreator>();
-
         var strategy = dbContext.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
         {
-            // Create the database if it does not exist.
-            // Do this first so there is then a database to start a transaction against.
-            if (!await dbCreator.ExistsAsync(ct).ConfigureAwait(false))
+            var dbCreated = await dbContext.Database.EnsureCreatedAsync(ct);
+
+            if (dbCreated)
             {
-                await dbCreator.CreateAsync(ct).ConfigureAwait(false);
+                await SeedDataAsync(dbContext, ct);
             }
-        }).ConfigureAwait(false);
+        });
+    }
+
+    private static async Task SeedDataAsync(EventSystemDbContext dbContext, CancellationToken ct)
+    {
+        // Seed Event Data
+        await dbContext.Events.AddAsync(new EventEntity(".NET Conf 2024", DateTime.UtcNow.AddDays(4)), ct);
+        await dbContext.Events.AddAsync(new EventEntity("Azure DevOps Summit", DateTime.UtcNow.AddDays(3)), ct);
+        await dbContext.Events.AddAsync(new EventEntity("Serverless Turkey", DateTime.UtcNow.AddDays(4)), ct);
+        await dbContext.Events.AddAsync(new EventEntity("Codefiction Meetup", DateTime.UtcNow.AddDays(5)), ct);
+
+        await dbContext.SaveChangesAsync(ct);
     }
 }
