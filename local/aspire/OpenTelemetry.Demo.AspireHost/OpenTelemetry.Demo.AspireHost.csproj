@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\services\OpenTelemetry.Demo.EventApi\OpenTelemetry.Demo.EventApi.csproj" />
     <ProjectReference Include="..\..\..\src\services\OpenTelemetry.Demo.TicketApi\OpenTelemetry.Demo.TicketApi.csproj" />
     <ProjectReference Include="..\..\..\src\services\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj" />
-    <ProjectReference Include="..\..\..\src\services\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj" />
     <ProjectReference Include="..\..\OpenTelemetry.Demo.Local.Database\OpenTelemetry.Demo.Local.Database.csproj" />
   </ItemGroup>
 

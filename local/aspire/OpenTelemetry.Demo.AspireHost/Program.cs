@@ -15,29 +15,30 @@ IResourceBuilder<IResourceWithConnectionString> database = databaseType switch
 };
 
 var databaseInitializer = builder
-    .AddProject<Projects.OpenTelemetry_Demo_Local_Database>("db-initializer")
-    .WithReference(database)
-    .WithEnvironment(databaseTypeEnv, databaseType)
-    .WaitFor(database);
+                          .AddProject<Projects.OpenTelemetry_Demo_Local_Database>("db-initializer")
+                          .WithReference(database)
+                          .WithEnvironment(databaseTypeEnv, databaseType)
+                          .WaitFor(database);
 
-var ticketApi = builder
-    .AddProject<Projects.OpenTelemetry_Demo_TicketApi>("ticket-api")
-    .WithReference(database)
-    .WithEnvironment(databaseTypeEnv, databaseType)
-    .WaitFor(database);
+// var ticketApi = builder
+//     .AddProject<Projects.OpenTelemetry_Demo_TicketApi>("ticket-api")
+//     .WithReference(database)
+//     .WithEnvironment(databaseTypeEnv, databaseType)
+//     .WaitFor(database);
 
 var userApi = builder
-    .AddProject<Projects.OpenTelemetry_Demo_UserApi>("user-api")
-    .WithExternalHttpEndpoints()
-    .WithReference(ticketApi)
-    .WithReference(database)
-    .WithEnvironment(databaseTypeEnv, databaseType)
-    .WaitFor(database);
+              .AddProject<Projects.OpenTelemetry_Demo_EventApi>("user-api")
+              .WithExternalHttpEndpoints()
 
-var ticketProcessor = builder
-    .AddProject<Projects.OpenTelemetry_Demo_TicketProcessor>("ticket-processor")
-    .WithReference(database)
-    .WithEnvironment(databaseTypeEnv, databaseType)
-    .WaitFor(database);
+              // .WithReference(ticketApi)
+              .WithReference(database)
+              .WithEnvironment(databaseTypeEnv, databaseType)
+              .WaitFor(database);
+
+// var ticketProcessor = builder
+//     .AddProject<Projects.OpenTelemetry_Demo_TicketProcessor>("ticket-processor")
+//     .WithReference(database)
+//     .WithEnvironment(databaseTypeEnv, databaseType)
+//     .WaitFor(database);
 
 await builder.Build().RunAsync();

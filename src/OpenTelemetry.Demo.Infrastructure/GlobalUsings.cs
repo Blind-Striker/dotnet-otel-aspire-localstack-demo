@@ -1,11 +1,19 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-
-global using System.Collections.Immutable;
-global using System.ComponentModel.DataAnnotations.Schema;
-global using System.Net;
+﻿global using System.Net;
 global using System.Text.Json;
+global using System.Text.Json.Serialization;
+
+global using FluentValidation;
 global using FluentValidation.Results;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Logging;
+
+global using OneOf;
+global using OneOf.Types;
+
+global using OpenTelemetry.Demo.Infrastructure.Common;
+global using OpenTelemetry.Demo.Infrastructure.Data;
 global using OpenTelemetry.Demo.Infrastructure.Event.Entities;
+global using OpenTelemetry.Demo.Infrastructure.Event.Models;
 global using OpenTelemetry.Demo.Infrastructure.User.Entities;
+global using OpenTelemetry.Demo.Infrastructure.User.Interfaces;
+global using OpenTelemetry.Demo.Infrastructure.User.Models;

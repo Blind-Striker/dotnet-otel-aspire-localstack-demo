@@ -5,15 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Event\Interfaces\" />
-    <Folder Include="Event\Models\" />
-    <Folder Include="Event\Services\" />
-    <Folder Include="User\Interfaces\" />
-    <Folder Include="User\Models\" />
-    <Folder Include="User\Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="OneOf" />

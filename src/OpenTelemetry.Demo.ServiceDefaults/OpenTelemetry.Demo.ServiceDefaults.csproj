@@ -7,13 +7,32 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App"/>
 
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"/>
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL"/>
+    
     <PackageReference Include="Microsoft.Extensions.Http.Resilience"/>
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery"/>
+    
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol"/>
     <PackageReference Include="OpenTelemetry.Extensions.Hosting"/>
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore"/>
     <PackageReference Include="OpenTelemetry.Instrumentation.Http"/>
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime"/>
+
+    <PackageReference Include="Serilog"/>
+    <PackageReference Include="Serilog.AspNetCore"/>
+    <PackageReference Include="Serilog.Enrichers.Context"/>
+    <PackageReference Include="Serilog.Enrichers.Thread"/>
+    <PackageReference Include="Serilog.Enrichers.Process"/>
+    <PackageReference Include="Serilog.Enrichers.Span"/>
+    <PackageReference Include="Serilog.Exceptions"/>
+    <PackageReference Include="Serilog.Exceptions.EntityFrameworkCore"/>
+    <PackageReference Include="Serilog.Sinks.Console"/>
+    <PackageReference Include="Serilog.Sinks.OpenTelemetry"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenTelemetry.Demo.Infrastructure\OpenTelemetry.Demo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

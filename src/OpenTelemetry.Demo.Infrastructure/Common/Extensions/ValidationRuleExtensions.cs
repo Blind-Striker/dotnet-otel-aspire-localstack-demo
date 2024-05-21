@@ -1,4 +1,4 @@
-﻿namespace OpenTelemetry.Demo.Infrastructure.Extensions;
+﻿namespace OpenTelemetry.Demo.Infrastructure.Common.Extensions;
 
 public static class ValidationRuleExtensions
 {

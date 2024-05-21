@@ -1,3 +1,5 @@
+#pragma warning disable CA1305
+
 // ReSharper disable CheckNamespace
 namespace Microsoft.Extensions.Hosting;
 
@@ -5,8 +7,8 @@ public static class Extensions
 {
     public static IHostApplicationBuilder AddServiceDefaults(this IHostApplicationBuilder builder)
     {
+        builder.ConfigureOpenTelemetryLogging();
         builder.ConfigureOpenTelemetry();
-
         builder.AddDefaultHealthChecks();
 
         builder.Services.AddServiceDiscovery();
@@ -29,7 +31,33 @@ public static class Extensions
         return builder;
     }
 
-    public static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder builder)
+    public static IHostApplicationBuilder ConfigureSerilog(this IHostApplicationBuilder builder)
+    {
+        builder.Logging.ClearProviders();
+        var config = new LoggerConfiguration()
+                     .ReadFrom.Configuration(builder.Configuration)
+                     .Enrich.FromLogContext()
+                     .Enrich.WithMachineName()
+                     .Enrich.WithProcessId()
+                     .Enrich.WithProcessName()
+                     .Enrich.WithThreadId()
+                     .Enrich.WithSpan()
+                     .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder()
+                                                  .WithDefaultDestructurers()
+                                                  .WithDestructurers(new[] { new DbUpdateExceptionDestructurer() }))
+                     .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
+                     .WriteTo.Console()
+                     .WriteTo.OpenTelemetry(options =>
+                     {
+                         options.IncludedData = IncludedData.TraceIdField | IncludedData.SpanIdField;
+                     });
+
+        builder.Logging.AddSerilog(config.CreateLogger());
+
+        return builder;
+    }
+
+    public static IHostApplicationBuilder ConfigureOpenTelemetryLogging(this IHostApplicationBuilder builder)
     {
         builder.Logging.AddOpenTelemetry(logging =>
         {
@@ -37,20 +65,26 @@ public static class Extensions
             logging.IncludeScopes = true;
         });
 
+        return builder;
+    }
+
+    public static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder builder)
+    {
         builder.Services.AddOpenTelemetry()
-            .WithMetrics(metrics =>
-            {
-                metrics.AddAspNetCoreInstrumentation()
-                    .AddHttpClientInstrumentation()
-                    .AddRuntimeInstrumentation();
-            })
-            .WithTracing(tracing =>
-            {
-                tracing.AddAspNetCoreInstrumentation()
-                    // Uncomment the following line to enable gRPC instrumentation (requires the OpenTelemetry.Instrumentation.GrpcNetClient package)
-                    //.AddGrpcClientInstrumentation()
-                    .AddHttpClientInstrumentation();
-            });
+               .WithMetrics(metrics =>
+               {
+                   metrics.AddAspNetCoreInstrumentation()
+                          .AddHttpClientInstrumentation()
+                          .AddRuntimeInstrumentation();
+               })
+               .WithTracing(tracing =>
+               {
+                   tracing.AddAspNetCoreInstrumentation()
+
+                          // Uncomment the following line to enable gRPC instrumentation (requires the OpenTelemetry.Instrumentation.GrpcNetClient package)
+                          //.AddGrpcClientInstrumentation()
+                          .AddHttpClientInstrumentation();
+               });
 
         builder.AddOpenTelemetryExporters();
 
@@ -66,25 +100,15 @@ public static class Extensions
             builder.Services.AddOpenTelemetry().UseOtlpExporter();
         }
 
-        // Uncomment the following lines to enable the Prometheus exporter (requires the OpenTelemetry.Exporter.Prometheus.AspNetCore package)
-        // builder.Services.AddOpenTelemetry()
-        //    .WithMetrics(metrics => metrics.AddPrometheusExporter());
-
-        // Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
-        //if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
-        //{
-        //    builder.Services.AddOpenTelemetry()
-        //       .UseAzureMonitor();
-        //}
-
         return builder;
     }
 
     public static IHostApplicationBuilder AddDefaultHealthChecks(this IHostApplicationBuilder builder)
     {
         builder.Services.AddHealthChecks()
-            // Add a default liveness check to ensure app is responsive
-            .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
+
+               // Add a default liveness check to ensure app is responsive
+               .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
         return builder;
     }

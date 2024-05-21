@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.TicketProcessor", "src\services\OpenTelemetry.Demo.TicketProcessor\OpenTelemetry.Demo.TicketProcessor.csproj", "{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.UserApi", "src\services\OpenTelemetry.Demo.UserApi\OpenTelemetry.Demo.UserApi.csproj", "{245669A8-9CA4-4DDC-B03B-26857F29E8E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Demo.EventApi", "src\services\OpenTelemetry.Demo.EventApi\OpenTelemetry.Demo.EventApi.csproj", "{BA142859-27BD-482A-80F6-292EE5BB824A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,10 +63,10 @@ Global
 		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{245669A8-9CA4-4DDC-B03B-26857F29E8E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA142859-27BD-482A-80F6-292EE5BB824A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA142859-27BD-482A-80F6-292EE5BB824A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA142859-27BD-482A-80F6-292EE5BB824A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA142859-27BD-482A-80F6-292EE5BB824A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,7 +81,7 @@ Global
 		{840311D0-C16C-4EC2-B3E1-65825866F7B8} = {49960C64-F5C9-4D2B-92C0-9D430ADDD709}
 		{F68FD1B6-00A3-4A15-9A0C-B43779056BB7} = {B32A3A52-0384-491A-9643-036D33FE822A}
 		{BF579FE4-D61D-48A0-B864-ED9C9D36C5E8} = {B32A3A52-0384-491A-9643-036D33FE822A}
-		{245669A8-9CA4-4DDC-B03B-26857F29E8E3} = {B32A3A52-0384-491A-9643-036D33FE822A}
+		{BA142859-27BD-482A-80F6-292EE5BB824A} = {B32A3A52-0384-491A-9643-036D33FE822A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14FD35C3-89A1-4B23-9A3F-B38B6BDF169E}
