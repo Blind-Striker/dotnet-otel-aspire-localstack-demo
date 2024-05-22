@@ -67,8 +67,35 @@ In the `launchSettings.json` of the `OpenTelemetry.Demo.AspireHost` project, the
 
 ### Running the Application
 
-1. Run the `OpenTelemetry.Demo.AspireHost` project.
-2. Once the services are up, the Aspire dashboard will be available, from which you can access the EventApi's Swagger UI.
+The `OpenTelemetry.Demo.AspireHost` project can be run either directly through your IDE or via the command line:
+
+#### IDE
+
+1. Open your IDE (Visual Studio, Visual Studio Code, JetBrains Rider, etc.).
+2. Navigate to the OpenTelemetry.Demo.AspireHost project.
+3. Start the project using the relevant IDE's run/debug functionality.
+
+#### Command Line
+
+- Open a terminal and navigate to the `OpenTelemetry.Demo.AspireHost` project directory.
+- To run the application with HTTPS (requires configured developer certificates), execute:
+
+```bash
+dotnet run --launch-profile "https"
+```
+
+If you encounter issues with HTTPS, ensure that your developer certificates are properly installed and configured. For more information, see [dotnet-dev-certs](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs).
+
+- Alternatively, to run the application with HTTP
+
+```bash
+dotnet run --launch-profile "http"
+```
+
+Once the services are up:
+
+- The Aspire dashboard will be accessible, providing an overview of service health and metrics.
+- You can also access the EventApi's Swagger UI to interact with the API directly. The URL to the Swagger UI will be displayed in the terminal or in the IDE's output window.
 
 ### Interacting with the API
 
