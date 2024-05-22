@@ -10,8 +10,17 @@ This project demonstrates the implementation of tracing in .NET applications usi
 
 This demo includes two main scenarios:
 
-- **HTTP Scenario:** Demonstrates tracing a synchronous flow where services communicate directly over HTTP. This scenario highlights the real-time interactions between microservices.
-- **SNS/SQS Scenario:** Demonstrates  asynchronous communication using AWS SNS for notifications and SQS for message queuing. This scenario highlights the decoupling of services and the benefits of message-based communication.
+### HTTP Scenario
+
+Demonstrates tracing a synchronous flow where services communicate directly over HTTP. This scenario highlights the real-time interactions between microservices.
+
+![Scenario1](https://raw.githubusercontent.com/Blind-Striker/dotnet-otel-aspire-localstack-demo/master/assets/scenario1.png)
+
+### SNS/SQS Scenario
+
+Demonstrates  asynchronous communication using AWS SNS for notifications and SQS for message queuing. This scenario highlights the decoupling of services and the benefits of message-based communication.
+
+![Scenario2](https://raw.githubusercontent.com/Blind-Striker/dotnet-otel-aspire-localstack-demo/master/assets/scenario2.png)
 
 ### Project Components
 
