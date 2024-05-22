@@ -1,15 +1,36 @@
+using static System.Environment;
+
+const string activitySourceName = "OpenTelemetry.Demo.EventApi";
+ActivitySource activitySource = new(activitySourceName);
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+var configuration = builder.Configuration;
 
 builder.AddServiceDefaults();
 builder.AddEventSystemDbContext();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
 
-builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoResolver = EventSystemJsonSerializerContext.Default);
-builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IEventService, EventService>();
+services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoResolver = EventSystemJsonSerializerContext.Default);
+services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
+services.AddScoped<IUserService, UserService>();
+services.AddScoped<IEventService, EventService>();
+
+builder.Services.AddOpenTelemetry()
+       .WithTracing(tracing => tracing.AddSource(activitySourceName))
+       .WithTracing(tracing => tracing.AddSource("OpenTelemetry.Demo.Infrastructure"));
+
+services.AddHttpClient<ITicketBookingClient, TicketBookingHttpClient>(client =>
+{
+    string baseAddress = configuration.GetValue<string>("TicketBookingClient:BaseAddress") ??
+                         GetEnvironmentVariable("services__ticket-api__https__0") ??
+                         GetEnvironmentVariable("services__ticket-api__http__0") ??
+                         throw new InvalidOperationException("TicketBookingClient:BaseAddress is not configured.");
+
+    client.BaseAddress = new Uri(baseAddress);
+});
 
 WebApplication app = builder.Build();
 
@@ -65,6 +86,8 @@ app.MapGet("/event/{id:int}", async (IEventService eventService, int id) =>
 
 app.MapPost("/event/register", async (IEventService eventService, RegisterToEventRequest request) =>
    {
+       // using var activity = activitySource.StartActivity("POST.EventApi.AttendEvent", ActivityKind.Client);
+
        RegisterToEventResult result = await eventService.RegisterToEventAsync(request);
 
        return result.Match<IResult>(

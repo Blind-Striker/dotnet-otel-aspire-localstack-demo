@@ -3,11 +3,11 @@
 public sealed class DbInitializer(IServiceProvider serviceProvider, IHostApplicationLifetime hostApplicationLifetime) : BackgroundService
 {
     public const string ActivitySourceName = "Initializations";
-    private static readonly ActivitySource s_activitySource = new(ActivitySourceName);
+    private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        using var activity = s_activitySource.StartActivity("Initialize database", ActivityKind.Client);
+        using Activity? activity = ActivitySource.StartActivity("Initialize database", ActivityKind.Client);
 
         try
         {

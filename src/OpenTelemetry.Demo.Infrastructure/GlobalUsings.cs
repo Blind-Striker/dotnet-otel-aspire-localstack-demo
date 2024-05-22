@@ -1,4 +1,6 @@
-﻿global using System.Net;
+﻿global using System.Diagnostics;
+global using System.Net;
+global using System.Net.Http.Json;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 
@@ -12,8 +14,14 @@ global using OneOf.Types;
 
 global using OpenTelemetry.Demo.Infrastructure.Common;
 global using OpenTelemetry.Demo.Infrastructure.Data;
-global using OpenTelemetry.Demo.Infrastructure.Event.Entities;
-global using OpenTelemetry.Demo.Infrastructure.Event.Models;
-global using OpenTelemetry.Demo.Infrastructure.User.Entities;
-global using OpenTelemetry.Demo.Infrastructure.User.Interfaces;
-global using OpenTelemetry.Demo.Infrastructure.User.Models;
+global using OpenTelemetry.Demo.Infrastructure.Domain.Event.Entities;
+global using OpenTelemetry.Demo.Infrastructure.Domain.Event.Interfaces;
+global using OpenTelemetry.Demo.Infrastructure.Domain.Event.Models;
+global using OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Entities;
+global using OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Interfaces;
+global using OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Models;
+global using OpenTelemetry.Demo.Infrastructure.Domain.User.Entities;
+global using OpenTelemetry.Demo.Infrastructure.Domain.User.Interfaces;
+global using OpenTelemetry.Demo.Infrastructure.Domain.User.Models;
+global using OpenTelemetry.Demo.Infrastructure.Integrations;
+global using OpenTelemetry.Demo.Infrastructure.Json;

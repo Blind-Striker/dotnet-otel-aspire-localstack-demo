@@ -124,7 +124,10 @@ public static class Extensions
 
                           // Uncomment the following line to enable gRPC instrumentation (requires the OpenTelemetry.Instrumentation.GrpcNetClient package)
                           //.AddGrpcClientInstrumentation()
-                          .AddHttpClientInstrumentation();
+                          .AddHttpClientInstrumentation(options => options.FilterHttpRequestMessage = request =>
+                          {
+                              return !request.RequestUri?.AbsoluteUri.Contains(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"], StringComparison.Ordinal) ?? true;
+                          });
                });
 
         builder.AddOpenTelemetryExporters();

@@ -9,4 +9,8 @@
 [JsonSerializable(typeof(EventModel[]))]
 [JsonSerializable(typeof(UserEventModel))]
 [JsonSerializable(typeof(IEnumerable<UserEventModel>))]
+[JsonSerializable(typeof(CreateTicketRequest))]
+[JsonSerializable(typeof(TicketModel))]
+[JsonSerializable(typeof(TicketModel[]))]
+[JsonSerializable(typeof(IEnumerable<TicketModel>))]
 public partial class EventSystemJsonSerializerContext : JsonSerializerContext;

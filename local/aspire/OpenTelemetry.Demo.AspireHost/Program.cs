@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-
 var builder = DistributedApplication.CreateBuilder(args);
 
 const string databaseName = "eventdb";
@@ -20,17 +18,17 @@ var databaseInitializer = builder
                           .WithEnvironment(databaseTypeEnv, databaseType)
                           .WaitFor(database);
 
-// var ticketApi = builder
-//     .AddProject<Projects.OpenTelemetry_Demo_TicketApi>("ticket-api")
-//     .WithReference(database)
-//     .WithEnvironment(databaseTypeEnv, databaseType)
-//     .WaitFor(database);
+var ticketApi = builder
+                .AddProject<Projects.OpenTelemetry_Demo_TicketApi>("ticket-api")
+                .WithExternalHttpEndpoints()
+                .WithReference(database)
+                .WithEnvironment(databaseTypeEnv, databaseType)
+                .WaitFor(database);
 
 var userApi = builder
               .AddProject<Projects.OpenTelemetry_Demo_EventApi>("user-api")
               .WithExternalHttpEndpoints()
-
-              // .WithReference(ticketApi)
+              .WithReference(ticketApi)
               .WithReference(database)
               .WithEnvironment(databaseTypeEnv, databaseType)
               .WaitFor(database);
