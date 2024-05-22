@@ -50,7 +50,7 @@ public static class WaitForDependenciesExtensions
     }
 
     private sealed class WaitForDependenciesRunningHook(DistributedApplicationExecutionContext executionContext,
-        ResourceNotificationService resourceNotificationService) :
+        ResourceNotificationService resourceNotificationService, ILogger<WaitForDependenciesRunningHook> logger) :
         IDistributedApplicationLifecycleHook,
         IAsyncDisposable
     {
@@ -67,10 +67,18 @@ public static class WaitForDependenciesExtensions
             // The global list of resources being waited on
             var waitingResources = new ConcurrentDictionary<IResource, ConcurrentDictionary<WaitOnAnnotation, TaskCompletionSource>>();
 
+            logger.LogInformation("Resources: {Resources}", string.Join(", ", appModel.Resources.Select(r => r.Name)));
+
             // For each resource, add an environment callback that waits for dependencies to be running
             foreach (IResource r in appModel.Resources)
             {
                 ILookup<IResource, WaitOnAnnotation> resourcesToWaitOn = r.Annotations.OfType<WaitOnAnnotation>().ToLookup(a => a.Resource);
+
+                // log resources to wait on
+                foreach (IGrouping<IResource, WaitOnAnnotation> group in resourcesToWaitOn)
+                {
+                    logger.LogInformation("Resource {Resource} is waiting for {Dependencies}", r.Name, string.Join(", ", group.Select(a => a.Resource.Name)));
+                }
 
                 if (resourcesToWaitOn.Count == 0)
                 {
@@ -97,6 +105,9 @@ public static class WaitForDependenciesExtensions
                         }
 
                         ConcurrentDictionary<WaitOnAnnotation, TaskCompletionSource> pendingAnnotations = waitingResources.GetOrAdd(resource, _ => new());
+
+                        // log pending annotations
+
 
                         foreach (WaitOnAnnotation waitOn in group)
                         {

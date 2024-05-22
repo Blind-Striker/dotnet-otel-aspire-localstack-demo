@@ -59,6 +59,7 @@
     <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.7.24251.11" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.7.24251.11" />
     <!-- AWS depencies -->
+    <PackageVersion Include="AWSSDK.Core" Version="3.7.304.3" />
     <PackageVersion Include="AWSSDK.CloudFormation" Version="3.7.307.19" />
     <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="3.7.301.35" />
     <PackageVersion Include="AWSSDK.SQS" Version="3.7.301" />

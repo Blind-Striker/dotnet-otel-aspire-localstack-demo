@@ -127,7 +127,9 @@ public static class Extensions
                           .AddHttpClientInstrumentation(options => options.FilterHttpRequestMessage = request =>
                           {
                               return !request.RequestUri?.AbsoluteUri.Contains(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"], StringComparison.Ordinal) ?? true;
-                          });
+                          })
+                          .AddAWSInstrumentation()
+                          .AddAWSMessagingInstrumentation();
                });
 
         builder.AddOpenTelemetryExporters();

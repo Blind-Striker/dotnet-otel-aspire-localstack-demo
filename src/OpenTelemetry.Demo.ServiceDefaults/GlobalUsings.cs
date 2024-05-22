@@ -1,6 +1,8 @@
 ﻿global using Aspire.Microsoft.EntityFrameworkCore.SqlServer;
 global using Aspire.Npgsql.EntityFrameworkCore.PostgreSQL;
 
+global using AWS.Messaging.Telemetry.OpenTelemetry;
+
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 global using Microsoft.EntityFrameworkCore;

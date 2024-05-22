@@ -22,15 +22,40 @@ builder.Services.AddOpenTelemetry()
        .WithTracing(tracing => tracing.AddSource(activitySourceName))
        .WithTracing(tracing => tracing.AddSource("OpenTelemetry.Demo.Infrastructure"));
 
-services.AddHttpClient<ITicketBookingClient, TicketBookingHttpClient>(client =>
-{
-    string baseAddress = configuration.GetValue<string>("TicketBookingClient:BaseAddress") ??
-                         GetEnvironmentVariable("services__ticket-api__https__0") ??
-                         GetEnvironmentVariable("services__ticket-api__http__0") ??
-                         throw new InvalidOperationException("TicketBookingClient:BaseAddress is not configured.");
+builder.Services
+       .AddLocalStack(builder.Configuration)
+       .AddAwsService<IAmazonSimpleNotificationService>();
 
-    client.BaseAddress = new Uri(baseAddress);
+var awsResources = new AWSResources();
+builder.Configuration.Bind("AWS:Resources", awsResources);
+
+var ticketIntegration = builder.Configuration.GetValue<string>("EventSystem:TicketIntegration");
+
+// Configuring messaging using the AWS.Messaging library.
+builder.Services.AddAWSMessageBus(messageBuilder =>
+{
+    messageBuilder.AddMessageSource("event-api");
+
+    messageBuilder.AddSNSPublisher<CreateTicketRequest>(awsResources.TicketTopicArn);
 });
+
+// TODO: Register factory for ITicketBookingClient
+if (string.Equals(ticketIntegration, "aws", StringComparison.Ordinal))
+{
+    services.AddScoped<ITicketBookingClient, TicketAWSMessagingClient>();
+}
+else
+{
+    services.AddHttpClient<ITicketBookingClient, TicketBookingHttpClient>(client =>
+    {
+        string baseAddress = configuration.GetValue<string>("TicketBookingClient:BaseAddress") ??
+                             GetEnvironmentVariable("services__ticket-api__https__0") ??
+                             GetEnvironmentVariable("services__ticket-api__http__0") ??
+                             throw new InvalidOperationException("TicketBookingClient:BaseAddress is not configured.");
+
+        client.BaseAddress = new Uri(baseAddress);
+    });
+}
 
 WebApplication app = builder.Build();
 

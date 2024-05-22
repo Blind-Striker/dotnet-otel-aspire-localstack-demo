@@ -4,6 +4,11 @@ global using System.Net.Http.Json;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 
+global using Amazon.Runtime;
+
+global using AWS.Messaging;
+global using AWS.Messaging.Publishers;
+
 global using FluentValidation;
 global using FluentValidation.Results;
 global using Microsoft.EntityFrameworkCore;

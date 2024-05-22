@@ -1,0 +1,54 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Parameters" : {
+    },
+    "Resources" : {
+        "TicketQueue" : {
+            "Type" : "AWS::SQS::Queue",
+            "Properties" : {
+            }
+        },
+        "TicketTopic" : {
+            "Type" : "AWS::SNS::Topic",
+            "Properties" : {
+                "Subscription" : [
+                    {"Protocol" : "sqs", "Endpoint" : {"Fn::GetAtt" : [ "TicketQueue", "Arn"]}}
+                ]
+            }
+        },
+        "TicketQueuePolicy": {
+            "Type": "AWS::SQS::QueuePolicy",
+            "Properties": {
+                "Queues": [
+                    { "Ref": "TicketQueue" }
+                ],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": "sqs:SendMessage",
+                            "Principal": {
+                                "Service": "sns.amazonaws.com"
+                            },
+                            "Resource": { "Fn::GetAtt": [ "TicketQueue", "Arn" ] },
+                            "Condition": {
+                                "ArnEquals": {
+                                    "aws:SourceArn": { "Ref": "TicketTopic" }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "Outputs" : {
+        "TicketQueueUrl" : {
+            "Value" : { "Ref" : "TicketQueue" }
+        },
+        "TicketTopicArn" : {
+            "Value" : { "Ref" : "TicketTopic" }
+        }
+    }
+}
