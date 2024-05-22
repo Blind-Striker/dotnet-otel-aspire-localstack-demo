@@ -13,6 +13,8 @@
     <PackageReference Include="Aspire.Hosting.PostgreSQL"/>
     <PackageReference Include="Aspire.Hosting.AWS"/>
 
+    <PackageReference Include="AWSSDK.Core"/>
+
     <PackageReference Include="LocalStack.Client"/>
     <PackageReference Include="LocalStack.Client.Extensions"/>
 

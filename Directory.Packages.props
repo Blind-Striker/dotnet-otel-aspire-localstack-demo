@@ -22,8 +22,8 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.3.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.7.24251.11" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.5.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.1" />
     <!-- Open Telemetry dependencies -->
     <PackageVersion Include="OpenTelemetry" Version="1.8.1" />
     <PackageVersion Include="OpenTelemetry.Api" Version="1.8.1" />
@@ -36,7 +36,7 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.11" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.8.0-beta.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.8.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.8.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.8.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.8.0-beta.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.0.0-rc9.14" />
     <!-- Serilog Depedencies -->
@@ -50,19 +50,19 @@
     <PackageVersion Include="Serilog.Exceptions" Version="8.4.0" />
     <PackageVersion Include="Serilog.Exceptions.EntityFrameworkCore" Version="8.4.0" />
     <PackageVersion Include="Serilog.Sinks.Console" Version="5.0.1" />
-    <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="2.0.0-dev-00282" />
+    <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="2.0.0" />
     <!-- Aspire depedencies-->
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.7.24251.11" />
-    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="8.0.0-preview.7.24251.11" />
-    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="8.0.0-preview.7.24251.11" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.1" />
+    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="8.0.1" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="8.0.1" />
     <PackageVersion Include="Aspire.Hosting.AWS" Version="8.0.0-preview.6.24214.1" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.7.24251.11" />
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.7.24251.11" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.1" />
     <!-- AWS depencies -->
-    <PackageVersion Include="AWSSDK.Core" Version="3.7.304.3" />
+    <PackageVersion Include="AWSSDK.Core" Version="3.7.304.4" />
     <PackageVersion Include="AWSSDK.CloudFormation" Version="3.7.307.19" />
-    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="3.7.301.35" />
-    <PackageVersion Include="AWSSDK.SQS" Version="3.7.301" />
+    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="3.7.301.42" />
+    <PackageVersion Include="AWSSDK.SQS" Version="3.7.301.7" />
     <PackageVersion Include="AWS.Messaging" Version="0.9.1" />
     <PackageVersion Include="AWS.Messaging.Telemetry.OpenTelemetry" Version="0.9.1" />
     <!-- 3rd dependencies -->
@@ -76,10 +76,10 @@
     <PackageVersion Include="LocalStack.Client.Extensions" Version="1.2.2" />
     <PackageVersion Include="OneOf" Version="3.0.271" />
     <PackageVersion Include="OneOf.SourceGenerator" Version="3.0.271" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.6.1" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <!-- Testing depdencies-->
     <PackageVersion Include="FluentAssertions" Version="6.12.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
     <PackageVersion Include="Moq" Version="4.20.70" />
     <PackageVersion Include="xunit" Version="2.8.0" />
     <PackageVersion Include="xunit.runner.console" Version="2.8.0" />
