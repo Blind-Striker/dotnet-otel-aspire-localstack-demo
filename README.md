@@ -1,10 +1,8 @@
 # Tracing the Future: Enhanced Observability in .NET with OpenTelemetry
 
-This repository hosts the demonstration for the "Tracing the Future" presentation, scheduled for [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications, reflecting the latest advancements in the .NET ecosystem.
+This repository hosts the demonstration for the "Tracing the Future" presentation, scheduled for [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications as well as using Aspire with AWS and LocalStack for local development.
 
-## Project Description
-
-This project demonstrates the implementation of tracing in .NET applications using OpenTelemetry, providing insights into application performance and behavior. The scenarios covered include both synchronous HTTP communications and asynchronous message handling using AWS SNS and SQS.
+The demo includes two main scenarios: HTTP and SNS/SQS, highlighting synchronous and asynchronous communication between microservices.
 
 ## Architecture and Scenarios
 
@@ -24,7 +22,7 @@ Demonstrates  asynchronous communication using AWS SNS for notifications and SQS
 
 ### Project Components
 
-- **OpenTelemetry.Demo.AspireHost**:Aspire Host project automatically launches and configures all necessary .NET services along with Docker containers.
+- **OpenTelemetry.Demo.AspireHost**: Aspire Host project automatically launches and configures all necessary .NET services along with Docker containers.
 - **OpenTelemetry.Demo.Local.Database**: Responsible for creating the database and seeding it with initial data. It supports both MSSQL and PostgreSQL databases. See [configuration](#configuration) section for more details.
 - **OpenTelemetry.Demo.EventApi:** Manages user creation, event listing, and registration to events. Following a user registration, it initiates ticket creation requests either through direct HTTP calls or via SNS+SQS. See [Interacting with the API](#interacting-with-the-api) and [configuration](#configuration) sections for more details.
 - **OpenTelemetry.Demo.TicketApi:** Processes ticket creation post-event registration when operating over HTTP. It receives ticket creation requests from EventApi and processes them accordingly.
@@ -36,14 +34,16 @@ Demonstrates  asynchronous communication using AWS SNS for notifications and SQS
 - [LocalStack](https://www.localstack.cloud/): Provides a local development environment for AWS cloud stack, allowing for full functionality without requiring actual AWS services.
 - [OpenTelemetry](https://opentelemetry.io/): An open-source observability framework for cloud-native software, providing metrics, logs, and traces for applications.
 - [AWS.Messaging](https://github.com/awslabs/aws-dotnet-messaging): Facilitates message processing with AWS services like SQS, SNS, and EventBridge.
-- [LocalStack.NET](https://github.com/localstack-dotnet/localstack-dotnet-client): A .NET client for LocalStack, offering a simplified wrapper for aws-sdk-net that configures endpoints to use LocalStack, facilitating local AWS cloud development.
+- [LocalStack.NET](https://github.com/localstack-dotnet/localstack-dotnet-client): A .NET client for LocalStack, offering a simplified wrapper for [aws-sdk-net](https://github.com/aws/aws-sdk-net) that configures endpoints to use LocalStack, facilitating local AWS cloud development.
 - [OneOf](https://github.com/mcintyre321/OneOf): Implements F# style discriminated unions in C#, simplifying complex conditional logic.
 - [Serilog.Sinks.OpenTelemetry](https://github.com/serilog/serilog-sinks-opentelemetry): A Serilog sink transforms Serilog events into OpenTelemetry LogRecords and sends them to an OTLP (gRPC or HTTP) endpoint.
 
 ## Setup and Local Development
+
 Follow these steps to set up the project locally:
 
 ### Prerequisites
+
 Ensure the following prerequisites are met before proceeding with the local setup:
 
 - **.NET 8.0:** Install from [official .NET download page](https://dotnet.microsoft.com/en-us/download)
@@ -98,6 +98,7 @@ To further enhance and expand this project, upcoming enhancements are planned as
 Additionally, the [localstack-dotnet](https://github.com/localstack-dotnet) organization will develop more extensive example projects that leverage technologies such as Aspire, OpenTelemetry, AWS, and [LocalStack.NET](https://github.com/localstack-dotnet/localstack-dotnet-client).
 
 ## Contribution and License
+
 Contributions to this project are welcome! Feel free to submit issues or pull requests to improve the project.
 
 This project is released under the [MIT License](LICENSE.md)
