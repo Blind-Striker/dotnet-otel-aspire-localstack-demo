@@ -3,7 +3,7 @@ using static System.Environment;
 const string activitySourceName = "OpenTelemetry.Demo.EventApi";
 ActivitySource activitySource = new(activitySourceName);
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
@@ -48,16 +48,16 @@ else
 {
     services.AddHttpClient<ITicketBookingClient, TicketBookingHttpClient>(client =>
     {
-        string baseAddress = configuration.GetValue<string>("TicketBookingClient:BaseAddress") ??
-                             GetEnvironmentVariable("services__ticket-api__https__0") ??
-                             GetEnvironmentVariable("services__ticket-api__http__0") ??
-                             throw new InvalidOperationException("TicketBookingClient:BaseAddress is not configured.");
+        var baseAddress = configuration.GetValue<string>("TicketBookingClient:BaseAddress") ??
+                          GetEnvironmentVariable("services__ticket-api__https__0") ??
+                          GetEnvironmentVariable("services__ticket-api__http__0") ??
+                          throw new InvalidOperationException("TicketBookingClient:BaseAddress is not configured.");
 
         client.BaseAddress = new Uri(baseAddress);
     });
 }
 
-WebApplication app = builder.Build();
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
@@ -69,7 +69,7 @@ app.UseHttpsRedirection();
 
 app.MapPost("/user", async (IUserService userService, CreateUserRequest request) =>
    {
-       CreateUserResult result = await userService.CreateUserAsync(request);
+       var result = await userService.CreateUserAsync(request);
 
        return result.Match<IResult>(
            model => TypedResults.CreatedAtRoute(model, "GetUser", new { id = model.Id }),
@@ -80,7 +80,7 @@ app.MapPost("/user", async (IUserService userService, CreateUserRequest request)
 
 app.MapGet("/user/{id:int}", async (IUserService userService, int id) =>
    {
-       GetUserResult result = await userService.GetUserByIdAsync(id);
+       var result = await userService.GetUserByIdAsync(id);
 
        return result.Match<IResult>(
            model => TypedResults.Ok(model),
@@ -91,7 +91,7 @@ app.MapGet("/user/{id:int}", async (IUserService userService, int id) =>
 
 app.MapGet("/event", async (IEventService eventService) =>
    {
-       GetEventsResult result = await eventService.GetEventsAsync();
+       var result = await eventService.GetEventsAsync();
 
        return result.Match<IResult>(events => TypedResults.Ok(events));
    })
@@ -100,7 +100,7 @@ app.MapGet("/event", async (IEventService eventService) =>
 
 app.MapGet("/event/{id:int}", async (IEventService eventService, int id) =>
    {
-       GetEventResult result = await eventService.GetEventByIdAsync(id);
+       var result = await eventService.GetEventByIdAsync(id);
 
        return result.Match<IResult>(
            model => TypedResults.Ok(model),
@@ -113,7 +113,7 @@ app.MapPost("/event/register", async (IEventService eventService, RegisterToEven
    {
        // using var activity = activitySource.StartActivity("POST.EventApi.AttendEvent", ActivityKind.Client);
 
-       RegisterToEventResult result = await eventService.RegisterToEventAsync(request);
+       var result = await eventService.RegisterToEventAsync(request);
 
        return result.Match<IResult>(
            model => TypedResults.CreatedAtRoute(model, "GetEvent", new { id = model.EventId }),

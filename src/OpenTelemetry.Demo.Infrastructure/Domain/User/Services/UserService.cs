@@ -6,7 +6,7 @@ public class UserService(EventSystemDbContext dbContext, ILogger<UserService> lo
     {
         logger.LogInformation("Creating user with {@Request}", request);
 
-        ValidationResult? validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync(request);
 
         if (!validationResult.IsValid)
         {
@@ -28,7 +28,7 @@ public class UserService(EventSystemDbContext dbContext, ILogger<UserService> lo
     {
         logger.LogInformation("Getting user with {Id}", id);
 
-        UserEntity? user = await dbContext.Users.FindAsync(id);
+        var user = await dbContext.Users.FindAsync(id);
 
         if (user == null)
         {

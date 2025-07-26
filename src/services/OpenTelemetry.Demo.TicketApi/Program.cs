@@ -3,7 +3,7 @@ using OpenTelemetry.Demo.Infrastructure.Common;
 const string activitySourceName = "OpenTelemetry.Demo.EventApi";
 ActivitySource activitySource = new(activitySourceName);
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 builder.AddEventSystemDbContext();
@@ -19,7 +19,7 @@ builder.Services.AddOpenTelemetry()
        .WithTracing(tracing => tracing.AddSource(activitySourceName))
        .WithTracing(tracing => tracing.AddSource("OpenTelemetry.Demo.Infrastructure"));
 
-WebApplication app = builder.Build();
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -32,7 +32,7 @@ app.UseHttpsRedirection();
 
 app.MapPost("/ticket", async (ITicketService ticketService, CreateTicketRequest request) =>
    {
-       CreateTicketResult result = await ticketService.CreateTicketAsync(request);
+       var result = await ticketService.CreateTicketAsync(request);
 
        return result.Match<IResult>(
            model => TypedResults.Ok(model),

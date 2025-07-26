@@ -24,6 +24,6 @@ builder.Services.AddAWSMessageBus(builder =>
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 
-IHost app = builder.Build();
+var app = builder.Build();
 
 await app.RunAsync();

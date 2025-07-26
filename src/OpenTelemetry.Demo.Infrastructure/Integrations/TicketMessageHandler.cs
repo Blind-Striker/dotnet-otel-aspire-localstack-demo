@@ -7,7 +7,7 @@ public class TicketMessageHandler(ITicketService ticketService, ILogger<TicketMe
     {
         logger.LogInformation("Processing ticket message for {@Request}", messageEnvelope.Message);
 
-        CreateTicketResult createTicketResult = await ticketService.CreateTicketAsync(messageEnvelope.Message);
+        var createTicketResult = await ticketService.CreateTicketAsync(messageEnvelope.Message);
 
         return createTicketResult.Match(
             ticket =>
@@ -16,13 +16,13 @@ public class TicketMessageHandler(ITicketService ticketService, ILogger<TicketMe
 
                 return MessageProcessStatus.Success();
             },
-            validationFailed =>
+            _ =>
             {
                 logger.LogError("Failed to create ticket for {@Request}", messageEnvelope.Message);
 
                 return MessageProcessStatus.Failed();
             },
-            notFound =>
+            _ =>
             {
                 logger.LogError("Failed to create ticket for {@Request}", messageEnvelope.Message);
 
