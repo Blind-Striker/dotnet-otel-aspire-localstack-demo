@@ -11,7 +11,7 @@ public class TicketBookingHttpClient(HttpClient httpClient, ILogger<TicketBookin
         // using Activity activity = ActivitySource.StartActivity($"{nameof(TicketBookingHttpClient)}.{nameof(CreateTicketAsync)}")!;
         logger.LogInformation("Creating ticket for user {UserId} and event {EventId}", request.UserId, request.EventId);
 
-        ValidationResult? validationResult = await validator.ValidateAsync(request, ct);
+        var validationResult = await validator.ValidateAsync(request, ct);
 
         if (!validationResult.IsValid)
         {
@@ -21,7 +21,7 @@ public class TicketBookingHttpClient(HttpClient httpClient, ILogger<TicketBookin
         }
 
         var jsonSerializerOptions = new JsonSerializerOptions() { TypeInfoResolver = EventSystemJsonSerializerContext.Default };
-        HttpResponseMessage response = await httpClient.PostAsJsonAsync("ticket", request, jsonSerializerOptions, ct);
+        var response = await httpClient.PostAsJsonAsync("ticket", request, jsonSerializerOptions, ct);
 
         if (!response.IsSuccessStatusCode)
         {

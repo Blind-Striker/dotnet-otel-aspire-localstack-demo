@@ -44,7 +44,7 @@ public class EventService(
 
         logger.LogInformation("Registering user to event with {@Request}", request);
 
-        ValidationResult? validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync(request);
 
         if (!validationResult.IsValid)
         {
@@ -53,7 +53,7 @@ public class EventService(
             return new ValidationFailed(validationResult.Errors);
         }
 
-        UserEntity? user = await dbContext.Users.FindAsync(request.UserId);
+        var user = await dbContext.Users.FindAsync(request.UserId);
 
         if (user == null)
         {
@@ -62,7 +62,7 @@ public class EventService(
             return new NotFound();
         }
 
-        EventEntity? @event = await dbContext.Events.FindAsync(request.EventId);
+        var @event = await dbContext.Events.FindAsync(request.EventId);
 
         if (@event == null)
         {
@@ -71,7 +71,7 @@ public class EventService(
             return new NotFound();
         }
 
-        RegistrationEntity? userEvent = await dbContext.Registrations.SingleOrDefaultAsync(entity => entity.UserId == user.Id && entity.EventId == @event.Id);
+        var userEvent = await dbContext.Registrations.SingleOrDefaultAsync(entity => entity.UserId == user.Id && entity.EventId == @event.Id);
 
         if (userEvent != null)
         {
@@ -87,8 +87,8 @@ public class EventService(
             logger.LogInformation("User registered to event with {UserId} and {EventId}", user.Id, @event.Id);
         }
 
-        TicketBookingResult ticketBookingResult = await ticketBookingClient
-                                                      .CreateTicketAsync(new CreateTicketRequest(user.Id, @event.Id, "Pending", "Registered to event"));
+        var ticketBookingResult = await ticketBookingClient
+                                      .CreateTicketAsync(new CreateTicketRequest(user.Id, @event.Id, "Pending", "Registered to event"));
 
         if (ticketBookingResult.IsT1 || ticketBookingResult.IsT2) // ValidationFailed or IntegrationFailed
         {

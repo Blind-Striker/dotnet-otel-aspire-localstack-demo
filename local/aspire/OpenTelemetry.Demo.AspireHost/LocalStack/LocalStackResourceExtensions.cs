@@ -13,7 +13,7 @@ public static class LocalStackResourceExtensions
     public static ILocalStackOptions AddLocalStackConfig(this IDistributedApplicationBuilder builder)
     {
         // check if the localstack section is present in the configuration
-        IConfigurationSection? localStackSection = builder.Configuration.GetSection(LocalStackSectionName);
+        var localStackSection = builder.Configuration.GetSection(LocalStackSectionName);
 
         // if the section is not present, return default options
         if (!localStackSection.Exists())
@@ -69,7 +69,7 @@ public static class LocalStackResourceExtensions
     /// <returns></returns>
     public static ILocalStackOptions WithLocalStackHost(this ILocalStackOptions options, string localStackHost)
     {
-        ConfigOptions optionsConfig = options.Config;
+        var optionsConfig = options.Config;
         var configOptions = new ConfigOptions(localStackHost, optionsConfig.UseSsl, optionsConfig.UseSsl, optionsConfig.EdgePort);
 
         return new LocalStackOptions(options.UseLocalStack, options.Session, configOptions);
@@ -83,7 +83,7 @@ public static class LocalStackResourceExtensions
     /// <returns></returns>
     public static ILocalStackOptions WithUseSsl(this ILocalStackOptions options, bool useSsl)
     {
-        ConfigOptions optionsConfig = options.Config;
+        var optionsConfig = options.Config;
         var configOptions = new ConfigOptions(optionsConfig.LocalStackHost, useSsl, optionsConfig.UseSsl, optionsConfig.EdgePort);
 
         return new LocalStackOptions(options.UseLocalStack, options.Session, configOptions);
@@ -97,7 +97,7 @@ public static class LocalStackResourceExtensions
     /// <returns></returns>
     public static ILocalStackOptions WithUseLegacyPorts(this ILocalStackOptions options, bool useLegacyPorts)
     {
-        ConfigOptions optionsConfig = options.Config;
+        var optionsConfig = options.Config;
         var configOptions = new ConfigOptions(optionsConfig.LocalStackHost, optionsConfig.UseSsl, useLegacyPorts, optionsConfig.EdgePort);
 
         return new LocalStackOptions(options.UseLocalStack, options.Session, configOptions);
@@ -111,7 +111,7 @@ public static class LocalStackResourceExtensions
     /// <returns></returns>
     public static ILocalStackOptions WithEdgePort(this ILocalStackOptions options, int edgePort)
     {
-        ConfigOptions optionsConfig = options.Config;
+        var optionsConfig = options.Config;
         var configOptions = new ConfigOptions(optionsConfig.LocalStackHost, optionsConfig.UseSsl, optionsConfig.UseSsl, edgePort);
 
         return new LocalStackOptions(options.UseLocalStack, options.Session, configOptions);

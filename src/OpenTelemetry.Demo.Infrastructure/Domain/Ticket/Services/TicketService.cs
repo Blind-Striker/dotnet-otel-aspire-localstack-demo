@@ -10,7 +10,7 @@ public class TicketService(EventSystemDbContext dbContext, ILogger<TicketService
         // using Activity activity = ActivitySource.StartActivity($"{nameof(TicketService)}.{nameof(CreateTicketAsync)}")!;
         logger.LogInformation("Creating ticket with {@Request}", request);
 
-        ValidationResult? validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync(request);
 
         if (!validationResult.IsValid)
         {
@@ -19,7 +19,7 @@ public class TicketService(EventSystemDbContext dbContext, ILogger<TicketService
             return new ValidationFailed(validationResult.Errors);
         }
 
-        UserEntity? user = await dbContext.Users.FindAsync(request.UserId);
+        var user = await dbContext.Users.FindAsync(request.UserId);
 
         if (user == null)
         {
@@ -28,7 +28,7 @@ public class TicketService(EventSystemDbContext dbContext, ILogger<TicketService
             return new NotFound();
         }
 
-        EventEntity? @event = await dbContext.Events.FindAsync(request.EventId);
+        var @event = await dbContext.Events.FindAsync(request.EventId);
 
         if (@event == null)
         {

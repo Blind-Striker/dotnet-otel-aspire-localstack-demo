@@ -11,7 +11,7 @@ public class TicketAWSMessagingClient(IMessagePublisher messagePublisher, ILogge
         // using Activity activity = ActivitySource.StartActivity($"{nameof(TicketAWSMessagingClient)}.{nameof(CreateTicketAsync)}")!;
         logger.LogInformation("Creating ticket for user {UserId} and event {EventId}", request.UserId, request.EventId);
 
-        ValidationResult? validationResult = await validator.ValidateAsync(request, ct);
+        var validationResult = await validator.ValidateAsync(request, ct);
 
         if (!validationResult.IsValid)
         {

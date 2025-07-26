@@ -7,7 +7,7 @@ public sealed class DbInitializer(IServiceProvider serviceProvider, IHostApplica
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        using Activity? activity = ActivitySource.StartActivity("Initialize database", ActivityKind.Client);
+        using var activity = ActivitySource.StartActivity("Initialize database", ActivityKind.Client);
 
         try
         {

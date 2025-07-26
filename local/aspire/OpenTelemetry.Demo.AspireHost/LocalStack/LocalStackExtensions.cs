@@ -4,7 +4,7 @@ public static class LocalStackExtensions
 {
     public static IResourceBuilder<ICloudFormationTemplateResource> WithLocalStack(this IResourceBuilder<ICloudFormationTemplateResource> builder, ILocalStackOptions? options = null)
     {
-        ILocalStackOptions localStackOptions = options ?? new LocalStackOptions();
+        var localStackOptions = options ?? new LocalStackOptions();
 
         if (!localStackOptions.UseLocalStack)
         {

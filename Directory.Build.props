@@ -1,8 +1,8 @@
 <Project>
 
   <PropertyGroup>
-    <NetCurrent>net8.0</NetCurrent>
-    <LangVersion>12.0</LangVersion>
+    <NetCurrent>net9.0</NetCurrent>
+    <LangVersion>13.0</LangVersion>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -23,6 +23,11 @@
     </PackageReference>
 
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

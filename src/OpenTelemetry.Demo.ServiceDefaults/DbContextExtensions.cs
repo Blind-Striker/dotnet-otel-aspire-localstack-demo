@@ -9,7 +9,7 @@ public static class DbContextExtensions
                                                                   Action<DbContextOptionsBuilder>? configureDbContextOptions = null)
     {
         connStrKey = string.IsNullOrWhiteSpace(connStrKey) ? "eventdb" : connStrKey;
-        string databaseType = builder.Configuration.GetValue<string>("EventSystem:DatabaseType") ?? "npgsql";
+        var databaseType = builder.Configuration.GetValue<string>("EventSystem:DatabaseType") ?? "npgsql";
 
         switch (databaseType)
         {
