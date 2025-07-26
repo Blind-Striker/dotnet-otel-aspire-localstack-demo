@@ -1,6 +1,6 @@
 # Tracing the Future: Enhanced Observability in .NET with OpenTelemetry
 
-This repository hosts the demonstration for the "Tracing the Future" presentation, scheduled for [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications as well as using Aspire with AWS and LocalStack for local development.
+This repository hosts the demonstration from the "Tracing the Future" presentation, delivered at [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications as well as using Aspire with AWS and LocalStack for local development.
 
 The demo includes two main scenarios: HTTP and SNS/SQS, highlighting synchronous and asynchronous communication between microservices.
 
@@ -34,7 +34,7 @@ Demonstrates  asynchronous communication using AWS SNS for notifications and SQS
 - [LocalStack](https://www.localstack.cloud/): Provides a local development environment for AWS cloud stack, allowing for full functionality without requiring actual AWS services.
 - [OpenTelemetry](https://opentelemetry.io/): An open-source observability framework for cloud-native software, providing metrics, logs, and traces for applications.
 - [AWS.Messaging](https://github.com/awslabs/aws-dotnet-messaging): Facilitates message processing with AWS services like SQS, SNS, and EventBridge.
-- [LocalStack.NET](https://github.com/localstack-dotnet/localstack-dotnet-client): A .NET client for LocalStack, offering a simplified wrapper for [aws-sdk-net](https://github.com/aws/aws-sdk-net) that configures endpoints to use LocalStack, facilitating local AWS cloud development.
+- [LocalStack.NET](https://github.com/localstack-dotnet/localstack-dotnet-client): A .NET client for LocalStack, offering a simplified wrapper for [aws-sdk-net](https://github.com/aws/aws-sdk-net) that configures endpoints to use LocalStack, facilitating local AWS cloud development. Version 2.0 provides consistent client configuration and enhanced AWS SDK v4 compatibility for streamlined development workflows.
 - [OneOf](https://github.com/mcintyre321/OneOf): Implements F# style discriminated unions in C#, simplifying complex conditional logic.
 - [Serilog.Sinks.OpenTelemetry](https://github.com/serilog/serilog-sinks-opentelemetry): A Serilog sink transforms Serilog events into OpenTelemetry LogRecords and sends them to an OTLP (gRPC or HTTP) endpoint.
 
@@ -46,11 +46,11 @@ Follow these steps to set up the project locally:
 
 Ensure the following prerequisites are met before proceeding with the local setup:
 
-- **.NET 8.0:** Install from [official .NET download page](https://dotnet.microsoft.com/en-us/download)
-- **.NET Aspire:** Requires the Aspire workload to be installed via Visual Studio or the .NET CLI. See [.NET Aspire setup and tooling](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&pivots=visual-studio) for more information.
+- **.NET 9.0:** Install from [official .NET download page](https://dotnet.microsoft.com/en-us/download)
+- **.NET Aspire:** Uses the new NuGet SDK model for simplified setup. See [.NET Aspire setup and tooling](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling) for more information.
 - **Container Runtime:** An OCI-compliant container runtime like Docker Desktop or Podman is necessary. For more information, refer to the [Container Runtime documentation](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&pivots=visual-studio#container-runtime).
 - **IDE or Code Editor:** While optional, it's beneficial to use:
-  - Visual Studio 2022 version 17.10 or higher.
+  - Visual Studio 2022 version 17.11 or higher.
   - Visual Studio Code.
   - JetBrains Rider with the [.NET Aspire plugin](https://plugins.jetbrains.com/plugin/23289--net-aspire) installed.
 
