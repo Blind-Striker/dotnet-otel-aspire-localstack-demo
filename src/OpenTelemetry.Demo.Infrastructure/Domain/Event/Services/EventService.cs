@@ -6,11 +6,11 @@ public class EventService(
     ILogger<EventService> logger,
     IValidator<RegisterToEventRequest> validator) : IEventService
 {
-    private const string activitySourceName = "OpenTelemetry.Demo.Infrastructure";
-    private static readonly ActivitySource ActivitySource = new(activitySourceName);
-
     public async Task<GetEventResult> GetEventByIdAsync(int id)
     {
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(EventService)}.{nameof(GetEventByIdAsync)}");
+        activity?.AddTag("eventId", id);
+
         logger.LogInformation("Getting event with {Id}", id);
 
         var @event = await dbContext.Events.FindAsync(id);
@@ -29,6 +29,8 @@ public class EventService(
 
     public async Task<GetEventsResult> GetEventsAsync()
     {
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(EventService)}.{nameof(GetEventsAsync)}");
+
         logger.LogInformation("Getting all events");
 
         var events = await dbContext.Events.ToListAsync();
@@ -40,7 +42,10 @@ public class EventService(
 
     public async Task<RegisterToEventResult> RegisterToEventAsync(RegisterToEventRequest request)
     {
-        // using Activity activity = ActivitySource.StartActivity($"{nameof(EventService)}.{nameof(RegisterToEventAsync)}")!;
+        ArgumentNullException.ThrowIfNull(request);
+
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(EventService)}.{nameof(RegisterToEventAsync)}");
+        activity?.AddTag("userId", request.UserId);
 
         logger.LogInformation("Registering user to event with {@Request}", request);
 

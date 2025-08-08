@@ -1,8 +1,5 @@
 using static System.Environment;
 
-const string activitySourceName = "OpenTelemetry.Demo.EventApi";
-ActivitySource activitySource = new(activitySourceName);
-
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -17,10 +14,6 @@ services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoR
 services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
 services.AddScoped<IUserService, UserService>();
 services.AddScoped<IEventService, EventService>();
-
-builder.Services.AddOpenTelemetry()
-       .WithTracing(tracing => tracing.AddSource(activitySourceName))
-       .WithTracing(tracing => tracing.AddSource("OpenTelemetry.Demo.Infrastructure"));
 
 builder.Services
        .AddLocalStack(builder.Configuration)
@@ -39,7 +32,7 @@ builder.Services.AddAWSMessageBus(messageBuilder =>
     messageBuilder.AddSNSPublisher<CreateTicketRequest>(awsResources.TicketTopicArn);
 });
 
-// TODO: Register factory for ITicketBookingClient
+// Register factory for ITicketBookingClient
 if (string.Equals(ticketIntegration, "aws", StringComparison.Ordinal))
 {
     services.AddScoped<ITicketBookingClient, TicketAWSMessagingClient>();
@@ -83,7 +76,7 @@ app.MapGet("/user/{id:int}", async (IUserService userService, int id) =>
        var result = await userService.GetUserByIdAsync(id);
 
        return result.Match<IResult>(
-           model => TypedResults.Ok(model),
+           TypedResults.Ok,
            _ => TypedResults.NotFound());
    })
    .WithName("GetUser")
@@ -93,7 +86,7 @@ app.MapGet("/event", async (IEventService eventService) =>
    {
        var result = await eventService.GetEventsAsync();
 
-       return result.Match<IResult>(events => TypedResults.Ok(events));
+       return result.Match<IResult>(TypedResults.Ok);
    })
    .WithName("GetEvents")
    .WithOpenApi();
@@ -103,7 +96,7 @@ app.MapGet("/event/{id:int}", async (IEventService eventService, int id) =>
        var result = await eventService.GetEventByIdAsync(id);
 
        return result.Match<IResult>(
-           model => TypedResults.Ok(model),
+           TypedResults.Ok,
            _ => TypedResults.NotFound());
    })
    .WithName("GetEvent")

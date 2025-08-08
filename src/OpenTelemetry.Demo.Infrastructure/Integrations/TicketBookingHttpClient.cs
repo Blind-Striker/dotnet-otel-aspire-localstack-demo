@@ -3,12 +3,13 @@
 public class TicketBookingHttpClient(HttpClient httpClient, ILogger<TicketBookingHttpClient> logger, IValidator<CreateTicketRequest> validator)
     : ITicketBookingClient
 {
-    private const string activitySourceName = "OpenTelemetry.Demo.Infrastructure";
-    private static readonly ActivitySource ActivitySource = new(activitySourceName);
-
     public async Task<TicketBookingResult> CreateTicketAsync(CreateTicketRequest request, CancellationToken ct = default)
     {
-        // using Activity activity = ActivitySource.StartActivity($"{nameof(TicketBookingHttpClient)}.{nameof(CreateTicketAsync)}")!;
+        ArgumentNullException.ThrowIfNull(request);
+
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(TicketBookingHttpClient)}.{nameof(CreateTicketAsync)}");
+        activity?.AddTag("userId", request.UserId);
+
         logger.LogInformation("Creating ticket for user {UserId} and event {EventId}", request.UserId, request.EventId);
 
         var validationResult = await validator.ValidateAsync(request, ct);

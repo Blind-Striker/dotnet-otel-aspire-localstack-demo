@@ -38,61 +38,61 @@ public static class Extensions
         builder.Services.AddSerilog(config =>
         {
             config.ReadFrom.Configuration(builder.Configuration)
-                  .Enrich.FromLogContext()
-                  .Enrich.WithMachineName()
-                  .Enrich.WithProcessId()
-                  .Enrich.WithProcessName()
-                  .Enrich.WithThreadId()
-                  .Enrich.WithSpan()
-                  .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder()
-                                               .WithDefaultDestructurers()
-                                               .WithDestructurers(new[] { new DbUpdateExceptionDestructurer() }))
-                  .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
-                  .WriteTo.Console()
-                  .WriteTo.OpenTelemetry(options =>
-                  {
-                      options.IncludedData = IncludedData.TraceIdField | IncludedData.SpanIdField;
-                      options.Endpoint = builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"];
-                      AddHeaders(options.Headers, builder.Configuration["OTEL_EXPORTER_OTLP_HEADERS"]);
-                      AddResourceAttributes(options.ResourceAttributes, builder.Configuration["OTEL_RESOURCE_ATTRIBUTES"]);
+                .Enrich.FromLogContext()
+                .Enrich.WithMachineName()
+                .Enrich.WithProcessId()
+                .Enrich.WithProcessName()
+                .Enrich.WithThreadId()
+                .Enrich.WithSpan()
+                .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder()
+                    .WithDefaultDestructurers()
+                    .WithDestructurers(new[] { new DbUpdateExceptionDestructurer() }))
+                .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
+                .WriteTo.Console()
+                .WriteTo.OpenTelemetry(options =>
+                {
+                    options.IncludedData = IncludedData.TraceIdField | IncludedData.SpanIdField;
+                    options.Endpoint = builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"];
+                    AddHeaders(options.Headers, builder.Configuration["OTEL_EXPORTER_OTLP_HEADERS"]);
+                    AddResourceAttributes(options.ResourceAttributes, builder.Configuration["OTEL_RESOURCE_ATTRIBUTES"]);
 
-                      void AddHeaders(IDictionary<string, string> headers, string headerConfig)
-                      {
-                          if (!string.IsNullOrEmpty(headerConfig))
-                          {
-                              foreach (var header in headerConfig.Split(','))
-                              {
-                                  var parts = header.Split('=');
+                    void AddHeaders(IDictionary<string, string> headers, string headerConfig)
+                    {
+                        if (!string.IsNullOrEmpty(headerConfig))
+                        {
+                            foreach (var header in headerConfig.Split(','))
+                            {
+                                var parts = header.Split('=');
 
-                                  if (parts.Length == 2)
-                                  {
-                                      headers[parts[0]] = parts[1];
-                                  }
-                                  else
-                                  {
-                                      throw new InvalidOperationException($"Invalid header format: {header}");
-                                  }
-                              }
-                          }
-                      }
+                                if (parts.Length == 2)
+                                {
+                                    headers[parts[0]] = parts[1];
+                                }
+                                else
+                                {
+                                    throw new InvalidOperationException($"Invalid header format: {header}");
+                                }
+                            }
+                        }
+                    }
 
-                      void AddResourceAttributes(IDictionary<string, object> attributes, string attributeConfig)
-                      {
-                          if (!string.IsNullOrEmpty(attributeConfig))
-                          {
-                              var parts = attributeConfig.Split('=');
+                    void AddResourceAttributes(IDictionary<string, object> attributes, string attributeConfig)
+                    {
+                        if (!string.IsNullOrEmpty(attributeConfig))
+                        {
+                            var parts = attributeConfig.Split('=');
 
-                              if (parts.Length == 2)
-                              {
-                                  attributes[parts[0]] = parts[1];
-                              }
-                              else
-                              {
-                                  throw new InvalidOperationException($"Invalid resource attribute format: {attributeConfig}");
-                              }
-                          }
-                      }
-                  });
+                            if (parts.Length == 2)
+                            {
+                                attributes[parts[0]] = parts[1];
+                            }
+                            else
+                            {
+                                throw new InvalidOperationException($"Invalid resource attribute format: {attributeConfig}");
+                            }
+                        }
+                    }
+                });
         });
 
         return builder;
@@ -112,25 +112,22 @@ public static class Extensions
     public static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder builder)
     {
         builder.Services.AddOpenTelemetry()
-               .WithMetrics(metrics =>
-               {
-                   metrics.AddAspNetCoreInstrumentation()
-                          .AddHttpClientInstrumentation()
-                          .AddRuntimeInstrumentation();
-               })
-               .WithTracing(tracing =>
-               {
-                   tracing.AddAspNetCoreInstrumentation()
-
-                          // Uncomment the following line to enable gRPC instrumentation (requires the OpenTelemetry.Instrumentation.GrpcNetClient package)
-                          //.AddGrpcClientInstrumentation()
-                          .AddHttpClientInstrumentation(options => options.FilterHttpRequestMessage = request =>
-                          {
-                              return !request.RequestUri?.AbsoluteUri.Contains(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"], StringComparison.Ordinal) ?? true;
-                          })
-                          .AddAWSInstrumentation()
-                          .AddAWSMessagingInstrumentation();
-               });
+            .WithMetrics(metrics =>
+            {
+                metrics.AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation()
+                    .AddRuntimeInstrumentation();
+            })
+            .WithTracing(tracing =>
+            {
+                tracing.AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation(options =>
+                        options.FilterHttpRequestMessage = request =>
+                            !request.RequestUri?.AbsoluteUri.Contains(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"], StringComparison.Ordinal) ?? true)
+                    .AddAWSInstrumentation()
+                    .AddAWSMessagingInstrumentation()
+                    .AddSource("OpenTelemetry.Demo.Infrastructure");
+            });
 
         builder.AddOpenTelemetryExporters();
 
@@ -153,8 +150,8 @@ public static class Extensions
     {
         builder.Services.AddHealthChecks()
 
-               // Add a default liveness check to ensure app is responsive
-               .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
+            // Add a default liveness check to ensure app is responsive
+            .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
         return builder;
     }

@@ -1,13 +1,18 @@
-﻿namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Services;
+﻿using System.Globalization;
+
+namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Services;
 
 public class TicketService(EventSystemDbContext dbContext, ILogger<TicketService> logger, IValidator<CreateTicketRequest> validator) : ITicketService
 {
-    private const string activitySourceName = "OpenTelemetry.Demo.Infrastructure";
-    private static readonly ActivitySource ActivitySource = new(activitySourceName);
-
     public async Task<CreateTicketResult> CreateTicketAsync(CreateTicketRequest request)
     {
-        // using Activity activity = ActivitySource.StartActivity($"{nameof(TicketService)}.{nameof(CreateTicketAsync)}")!;
+        ArgumentNullException.ThrowIfNull(request);
+
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(TicketService)}.{nameof(CreateTicketAsync)}")!;
+
+        activity?.AddTag(nameof(request.UserId), request.UserId.ToString(CultureInfo.InvariantCulture));
+        activity?.AddTag(nameof(request.EventId), request.EventId.ToString(CultureInfo.InvariantCulture));
+
         logger.LogInformation("Creating ticket with {@Request}", request);
 
         var validationResult = await validator.ValidateAsync(request);
@@ -50,7 +55,11 @@ public class TicketService(EventSystemDbContext dbContext, ILogger<TicketService
 
     private async Task SendEmailAsync(TicketEntity ticket)
     {
-        // using Activity activity = ActivitySource.StartActivity($"{nameof(TicketService)}.{nameof(SendEmailAsync)}")!;
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(TicketService)}.{nameof(SendEmailAsync)}")!;
+
+        activity?.AddTag(nameof(ticket.UserId), ticket.UserId.ToString(CultureInfo.InvariantCulture));
+        activity?.AddTag(nameof(ticket.EventId), ticket.EventId.ToString(CultureInfo.InvariantCulture));
+
         // Simulate email sending by waiting for between 10 and 20 milliseconds
         var random = new Random();
         await Task.Delay(random.Next(10, 20));

@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.0" />
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.0"/>
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,11 +7,13 @@
     <UserSecretsId>94576410-C351-49B0-BC6E-C9945BF94B52</UserSecretsId>
   </PropertyGroup>
 
-    <ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost"/>
     <PackageReference Include="Aspire.Hosting.SqlServer"/>
     <PackageReference Include="Aspire.Hosting.PostgreSQL"/>
     <PackageReference Include="Aspire.Hosting.AWS"/>
+
+    <PackageReference Include="LocalStack.Aspire.Hosting"/>
 
     <PackageReference Include="AWSSDK.Core"/>
 

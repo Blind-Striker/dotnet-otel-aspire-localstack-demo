@@ -8,17 +8,17 @@ builder.Configuration.Bind("AWS:Resources", awsResources);
 
 if (string.IsNullOrEmpty(awsResources.TicketQueueUrl))
 {
-    throw new ApplicationException("Missing required configuration for feedback queue url");
+    throw new InvalidOperationException("Missing required configuration for feedback queue url");
 }
 
 builder.Services.AddLocalStack(builder.Configuration)
        .AddAWSServiceLocalStack<IAmazonSQS>();
 
-builder.Services.AddAWSMessageBus(builder =>
+builder.Services.AddAWSMessageBus(busBuilder =>
 {
-    builder.AddSQSPoller(awsResources.TicketQueueUrl);
+    busBuilder.AddSQSPoller(awsResources.TicketQueueUrl);
 
-    builder.AddMessageHandler<TicketMessageHandler, CreateTicketRequest>();
+    busBuilder.AddMessageHandler<TicketMessageHandler, CreateTicketRequest>();
 });
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
