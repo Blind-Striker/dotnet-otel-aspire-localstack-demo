@@ -1,8 +1,5 @@
 using OpenTelemetry.Demo.Infrastructure.Common;
 
-const string activitySourceName = "OpenTelemetry.Demo.EventApi";
-ActivitySource activitySource = new(activitySourceName);
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
@@ -14,10 +11,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoResolver = EventSystemJsonSerializerContext.Default);
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
 builder.Services.AddScoped<ITicketService, TicketService>();
-
-builder.Services.AddOpenTelemetry()
-       .WithTracing(tracing => tracing.AddSource(activitySourceName))
-       .WithTracing(tracing => tracing.AddSource("OpenTelemetry.Demo.Infrastructure"));
 
 var app = builder.Build();
 
@@ -35,7 +28,7 @@ app.MapPost("/ticket", async (ITicketService ticketService, CreateTicketRequest 
        var result = await ticketService.CreateTicketAsync(request);
 
        return result.Match<IResult>(
-           model => TypedResults.Ok(model),
+           TypedResults.Ok,
            validationFailed => TypedResults.BadRequest(validationFailed.Errors.ToJson()),
            _ => TypedResults.NotFound());
    })

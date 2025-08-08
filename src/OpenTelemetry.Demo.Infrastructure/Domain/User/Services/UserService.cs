@@ -1,9 +1,15 @@
-﻿namespace OpenTelemetry.Demo.Infrastructure.Domain.User.Services;
+﻿using System.Globalization;
+
+namespace OpenTelemetry.Demo.Infrastructure.Domain.User.Services;
 
 public class UserService(EventSystemDbContext dbContext, ILogger<UserService> logger, IValidator<CreateUserRequest> validator) : IUserService
 {
     public async Task<CreateUserResult> CreateUserAsync(CreateUserRequest request)
     {
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(UserService)}.{nameof(CreateUserAsync)}");
+
+        activity?.AddTag(nameof(request.Email), request.Email);
+
         logger.LogInformation("Creating user with {@Request}", request);
 
         var validationResult = await validator.ValidateAsync(request);
@@ -26,6 +32,10 @@ public class UserService(EventSystemDbContext dbContext, ILogger<UserService> lo
 
     public async Task<GetUserResult> GetUserByIdAsync(int id)
     {
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(UserService)}.{nameof(GetUserByIdAsync)}");
+
+        activity?.AddTag("userId", id);
+
         logger.LogInformation("Getting user with {Id}", id);
 
         var user = await dbContext.Users.FindAsync(id);

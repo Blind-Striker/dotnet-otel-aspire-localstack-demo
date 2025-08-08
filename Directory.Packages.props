@@ -4,26 +4,25 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- third-party analyzers -->
-    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.205" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.212" />
     <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="5.0.0-1.25277.114" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.14.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.14.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
     <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" />
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.13.1" />
-    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.13.1" />
-    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.13.1" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.14.0" />
+    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.14.0" />
+    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.14.0" />
     <PackageVersion Include="SecurityCodeScan.VS2019" Version="5.6.7" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
     <PackageVersion Include="xunit.analyzers" Version="1.23.0" />
     <!-- Microsoft AspNetCore dependencies -->
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.7" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.8" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.8" />
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.7.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.3.1" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.4.0" />
     <!-- Open Telemetry dependencies -->
     <PackageVersion Include="OpenTelemetry" Version="1.12.0" />
     <PackageVersion Include="OpenTelemetry.Api" Version="1.12.0" />
@@ -51,19 +50,20 @@
     <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="4.2.0" />
     <!-- Aspire depedencies-->
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.3.1" />
-    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="9.3.2" />
-    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.3.1" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.4.0" />
+    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="9.4.0" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.4.0" />
     <PackageVersion Include="Aspire.Hosting.AWS" Version="9.2.6" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.3.1" />
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.3.1" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.4.0" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.4.0" />
+    <PackageVersion Include="LocalStack.Aspire.Hosting" Version="9.4.0-rc.1" />
     <!-- AWS depencies -->
-    <PackageVersion Include="AWSSDK.Core" Version="4.0.0.18" />
+    <PackageVersion Include="AWSSDK.Core" Version="4.0.0.21" />
     <PackageVersion Include="AWSSDK.CloudFormation" Version="4.0.0.17" />
-    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="4.0.0.15" />
-    <PackageVersion Include="AWSSDK.SQS" Version="4.0.0.17" />
+    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="4.0.0.18" />
+    <PackageVersion Include="AWSSDK.SQS" Version="4.0.0.19" />
     <PackageVersion Include="AWS.Messaging" Version="1.0.1" />
-    <PackageVersion Include="AWS.Messaging.Telemetry.OpenTelemetry" Version="0.23.0" />
+    <PackageVersion Include="AWS.Messaging.Telemetry.OpenTelemetry" Version="1.0.0" />
     <!-- 3rd dependencies -->
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />

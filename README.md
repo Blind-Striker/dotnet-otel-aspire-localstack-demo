@@ -1,8 +1,15 @@
 # Tracing the Future: Enhanced Observability in .NET with OpenTelemetry
 
-This repository hosts the demonstration from the "Tracing the Future" presentation, delivered at [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications as well as using Aspire with AWS and LocalStack for local development.
+This repository hosts the demonstration from the "Tracing the Future" presentation, delivered at [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications, and uses .NET Aspire with AWS and LocalStack for local development.
 
 The demo includes two main scenarios: HTTP and SNS/SQS, highlighting synchronous and asynchronous communication between microservices.
+
+## What's new (Aspire 9.4 + LocalStack.NET v2)
+
+- AppHost uses [LocalStack.Aspire.Hosting](https://github.com/localstack-dotnet/dotnet-aspire-for-localstack) to provision and manage a LocalStack container as part of the Aspire composition.
+- AWS resources (SNS Topic + SQS Queue) are provisioned via an embedded AWS CDK stack and exposed to services through Aspire references.
+- Upgraded to AWS SDK for .NET v4 and [LocalStack.NET v2](https://github.com/localstack-dotnet/localstack-dotnet-client) for consistent client configuration with LocalStack.
+- Consolidated OpenTelemetry setup: ASP.NET Core, HttpClient, AWS SDK, and AWS.Messaging instrumentation with optional OTLP export.
 
 ## Architecture and Scenarios
 
@@ -27,6 +34,7 @@ Demonstrates  asynchronous communication using AWS SNS for notifications and SQS
 - **OpenTelemetry.Demo.EventApi:** Manages user creation, event listing, and registration to events. Following a user registration, it initiates ticket creation requests either through direct HTTP calls or via SNS+SQS. See [Interacting with the API](#interacting-with-the-api) and [configuration](#configuration) sections for more details.
 - **OpenTelemetry.Demo.TicketApi:** Processes ticket creation post-event registration when operating over HTTP. It receives ticket creation requests from EventApi and processes them accordingly.
 - **OpenTelemetry.Demo.TicketProcessor:** Processes ticket creation post-event registration when operating over SNS+SQS. It listens to the SQS queue for ticket creation requests and processes them accordingly.
+- **AWS CDK in AppHost:** An embedded CDK stack provisions the `TicketTopic` (SNS) and `TicketQueue` (SQS) and wires their outputs into the AppHost so services can publish/consume without manual setup.
 
 ## Key Technologies and Packages
 
@@ -35,6 +43,7 @@ Demonstrates  asynchronous communication using AWS SNS for notifications and SQS
 - [OpenTelemetry](https://opentelemetry.io/): An open-source observability framework for cloud-native software, providing metrics, logs, and traces for applications.
 - [AWS.Messaging](https://github.com/awslabs/aws-dotnet-messaging): Facilitates message processing with AWS services like SQS, SNS, and EventBridge.
 - [LocalStack.NET](https://github.com/localstack-dotnet/localstack-dotnet-client): A .NET client for LocalStack, offering a simplified wrapper for [aws-sdk-net](https://github.com/aws/aws-sdk-net) that configures endpoints to use LocalStack, facilitating local AWS cloud development. Version 2.0 provides consistent client configuration and enhanced AWS SDK v4 compatibility for streamlined development workflows.
+- [.NET Aspire Integrations for LocalStack](https://github.com/localstack-dotnet/dotnet-aspire-for-localstack): Integration library that enables first-class LocalStack management from .NET Aspire (used here via `LocalStack.Aspire.Hosting`).
 - [OneOf](https://github.com/mcintyre321/OneOf): Implements F# style discriminated unions in C#, simplifying complex conditional logic.
 - [Serilog.Sinks.OpenTelemetry](https://github.com/serilog/serilog-sinks-opentelemetry): A Serilog sink transforms Serilog events into OpenTelemetry LogRecords and sends them to an OTLP (gRPC or HTTP) endpoint.
 
@@ -60,10 +69,20 @@ The `OpenTelemetry.Demo.AspireHost` is an Aspire Host project that launches and 
 
 ### Configuration
 
-In the `launchSettings.json` of the `OpenTelemetry.Demo.AspireHost` project, there are two key environment variables:
+In the `launchSettings.json` of the `OpenTelemetry.Demo.AspireHost` project (or via environment variables at runtime), two keys drive the composition:
 
-- `EventSystem:DatabaseType:` Determines the type of database used, options include "npgsql" for PostgreSQL or "sqlserver" for Microsoft SQL Server.
-- `EventSystem:TicketIntegration:` Specifies the communication strategy between EventApi and ticketing services. Set to "aws" to use AWS SNS and SQS, or "http" for direct HTTP calls.
+- `EventSystem:DatabaseType` — Database engine: `npgsql` (PostgreSQL, default) or `sqlserver` (Microsoft SQL Server).
+- `EventSystem:TicketIntegration` — Integration mode between EventApi and ticketing services: `aws` (SNS+SQS, default) or `http` (direct HTTP to TicketApi).
+
+Defaults are set to PostgreSQL + AWS. When set to `aws`, AppHost runs the `TicketProcessor` worker and wires SNS/SQS via the embedded CDK stack. When set to `http`, AppHost runs the `TicketApi` and wires EventApi’s HttpClient via Aspire service discovery.
+
+Environment variables can be provided using the standard .NET double-underscore format. For example (PowerShell):
+
+```powershell
+$env:EventSystem__DatabaseType = "npgsql"
+$env:EventSystem__TicketIntegration = "aws"
+dotnet run --launch-profile "http"
+```
 
 ### Running the Application
 
@@ -97,12 +116,23 @@ Once the services are up:
 - The Aspire dashboard will be accessible, providing an overview of service health and metrics.
 - You can also access the EventApi's Swagger UI to interact with the API directly. The URL to the Swagger UI will be displayed in the terminal or in the IDE's output window.
 
+### LocalStack and AWS Resources
+
+- LocalStack is managed by the AppHost via `LocalStack.Aspire.Hosting`; no separate docker-compose is required.
+- The AppHost synthesizes an AWS CDK stack that creates:
+  - `TicketTopic` (SNS) and `TicketQueue` (SQS)
+  - A subscription that routes topic messages to the queue
+  - Necessary queue policy for SNS to publish
+- Topic ARN and Queue URL are exported and injected into services through Aspire references.
+
 ### Interacting with the API
 
 - Create Users:
   - Use the `POST /user` endpoint to create new users. This can be done via the Swagger UI or using a tool like Postman.
 - Register Users to Events:
   - With users created, use the `POST /event/register` endpoint to register these users to events. Events are pre-seeded and available for registration.
+  - In `aws` mode, EventApi publishes a message to SNS; TicketProcessor consumes from SQS and creates the ticket.
+  - In `http` mode, EventApi calls TicketApi directly over HTTP to create the ticket.
 
 ### Observability and Monitoring
 
