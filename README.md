@@ -4,7 +4,7 @@ This repository hosts the demonstration from the "Tracing the Future" presentati
 
 The demo includes two main scenarios: HTTP and SNS/SQS, highlighting synchronous and asynchronous communication between microservices.
 
-## What's new (Aspire 9.4 + LocalStack.NET v2)
+## What's new
 
 - AppHost uses [LocalStack.Aspire.Hosting](https://github.com/localstack-dotnet/dotnet-aspire-for-localstack) to provision and manage a LocalStack container as part of the Aspire composition.
 - AWS resources (SNS Topic + SQS Queue) are provisioned via an embedded AWS CDK stack and exposed to services through Aspire references.
