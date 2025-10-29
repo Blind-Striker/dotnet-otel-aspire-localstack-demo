@@ -3,7 +3,7 @@
 builder.AddServiceDefaults();
 builder.AddEventSystemDbContext();
 
-var awsResources = new AWSResources();
+var awsResources = new AwsResources();
 builder.Configuration.Bind("AWS:Resources", awsResources);
 
 if (string.IsNullOrEmpty(awsResources.TicketQueueUrl))

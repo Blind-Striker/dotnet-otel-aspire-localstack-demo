@@ -19,7 +19,7 @@ builder.Services
        .AddLocalStack(builder.Configuration)
        .AddAwsService<IAmazonSimpleNotificationService>();
 
-var awsResources = new AWSResources();
+var awsResources = new AwsResources();
 builder.Configuration.Bind("AWS:Resources", awsResources);
 
 var ticketIntegration = builder.Configuration.GetValue<string>("EventSystem:TicketIntegration");
@@ -35,7 +35,7 @@ builder.Services.AddAWSMessageBus(messageBuilder =>
 // Register factory for ITicketBookingClient
 if (string.Equals(ticketIntegration, "aws", StringComparison.Ordinal))
 {
-    services.AddScoped<ITicketBookingClient, TicketAWSMessagingClient>();
+    services.AddScoped<ITicketBookingClient, TicketAwsMessagingClient>();
 }
 else
 {

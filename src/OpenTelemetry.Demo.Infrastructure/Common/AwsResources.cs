@@ -1,6 +1,6 @@
 ﻿namespace OpenTelemetry.Demo.Infrastructure.Common;
 
-public class AWSResources
+public class AwsResources
 {
     public string? TicketQueueUrl { get; set; }
 

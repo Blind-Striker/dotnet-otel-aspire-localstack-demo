@@ -1,4 +1,6 @@
 ﻿#pragma warning disable RCS1170, S1144
+using System.Diagnostics.CodeAnalysis;
+
 namespace OpenTelemetry.Demo.Infrastructure.Domain.User.Entities;
 
 public class UserEntity
@@ -8,10 +10,11 @@ public class UserEntity
 
     private UserEntity()
     {
-        _registrations = new List<RegistrationEntity>();
-        _tickets = new List<TicketEntity>();
+        _registrations = [];
+        _tickets = [];
     }
 
+    [SetsRequiredMembers]
     public UserEntity(string firstName, string lastName, string email)
         : this()
     {
@@ -20,11 +23,11 @@ public class UserEntity
         Email = email;
     }
 
-    public int Id { get; private set; }
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string Email { get; private set; }
-    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public int Id { get; init; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string Email { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public IReadOnlyCollection<RegistrationEntity> Registrations => _registrations;
     public IReadOnlyCollection<TicketEntity> Tickets => _tickets;

@@ -25,9 +25,6 @@
     <PackageReference Include="Serilog"/>
     <PackageReference Include="Serilog.AspNetCore"/>
     <PackageReference Include="Serilog.Enrichers.Context"/>
-    <PackageReference Include="Serilog.Enrichers.Thread"/>
-    <PackageReference Include="Serilog.Enrichers.Process"/>
-    <PackageReference Include="Serilog.Enrichers.Span"/>
     <PackageReference Include="Serilog.Exceptions"/>
     <PackageReference Include="Serilog.Exceptions.EntityFrameworkCore"/>
     <PackageReference Include="Serilog.Sinks.Console"/>

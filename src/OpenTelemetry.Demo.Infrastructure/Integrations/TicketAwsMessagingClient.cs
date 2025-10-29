@@ -1,13 +1,13 @@
 namespace OpenTelemetry.Demo.Infrastructure.Integrations;
 
-public class TicketAWSMessagingClient(IMessagePublisher messagePublisher, ILogger<TicketAWSMessagingClient> logger, IValidator<CreateTicketRequest> validator)
+public class TicketAwsMessagingClient(IMessagePublisher messagePublisher, ILogger<TicketAwsMessagingClient> logger, IValidator<CreateTicketRequest> validator)
     : ITicketBookingClient
 {
     public async Task<TicketBookingResult> CreateTicketAsync(CreateTicketRequest request, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(TicketAWSMessagingClient)}.{nameof(CreateTicketAsync)}");
+        using var activity = InfrastructureActivitySource.ActivitySource.StartActivity($"{nameof(TicketAwsMessagingClient)}.{nameof(CreateTicketAsync)}");
         activity?.AddTag("userId", request.UserId);
 
         logger.LogInformation("Creating ticket for user {UserId} and event {EventId}", request.UserId, request.EventId);

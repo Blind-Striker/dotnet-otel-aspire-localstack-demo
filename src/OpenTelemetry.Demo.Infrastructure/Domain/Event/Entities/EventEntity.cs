@@ -1,18 +1,20 @@
 ﻿#pragma warning disable RCS1170, S1144
+using System.Diagnostics.CodeAnalysis;
 
 namespace OpenTelemetry.Demo.Infrastructure.Domain.Event.Entities;
 
 public class EventEntity
 {
-    private List<RegistrationEntity> _registrations;
-    private List<TicketEntity> _tickets;
+    private readonly List<RegistrationEntity> _registrations;
+    private readonly List<TicketEntity> _tickets;
 
     private EventEntity()
     {
-        _registrations = new List<RegistrationEntity>();
-        _tickets = new List<TicketEntity>();
+        _registrations = [];
+        _tickets = [];
     }
 
+    [SetsRequiredMembers]
     public EventEntity(string name, DateTime date)
         : this()
     {
@@ -20,18 +22,16 @@ public class EventEntity
         Date = date;
     }
 
-    public int Id { get; private set; }
+    public int Id { get; init; }
 
-    public string Name { get; private set; }
-    public DateTime Date { get; private set; }
+    public required string Name { get; set; }
+    public DateTime Date { get; set; }
 
     public IReadOnlyCollection<RegistrationEntity> Registrations => _registrations;
     public IReadOnlyCollection<TicketEntity> Tickets => _tickets;
 
     public void AddRegistration(UserEntity userEntity)
     {
-        _registrations ??= [];
-
         if (_registrations.Exists(r => r.UserId == userEntity.Id))
         {
             throw new InvalidOperationException("User is already registered for this event.");

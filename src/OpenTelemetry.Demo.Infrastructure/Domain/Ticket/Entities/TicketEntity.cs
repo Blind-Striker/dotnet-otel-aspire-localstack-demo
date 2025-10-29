@@ -1,4 +1,6 @@
-﻿namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Entities;
 
 public class TicketEntity
 {
@@ -6,8 +8,12 @@ public class TicketEntity
     {
     }
 
+    [SetsRequiredMembers]
     public TicketEntity(UserEntity userEntity, EventEntity eventEntity, string status = "Reserved", string? remarks = null) : this()
     {
+        ArgumentNullException.ThrowIfNull(userEntity);
+        ArgumentNullException.ThrowIfNull(eventEntity);
+
         UserId = userEntity.Id;
         EventId = eventEntity.Id;
         Status = status;
@@ -16,13 +22,13 @@ public class TicketEntity
         Event = eventEntity;
     }
 
-    public int Id { get; private set; }
-    public int UserId { get; private set; }
-    public int EventId { get; private set; }
-    public string Status { get; private set; }
-    public string? Remarks { get; private set; }
-    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public int Id { get; init; }
+    public int UserId { get; init; }
+    public int EventId { get; init; }
+    public required string Status { get; set; }
+    public string? Remarks { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    public UserEntity User { get; private set; }
-    public EventEntity Event { get; private set; }
+    public required UserEntity User { get; set; }
+    public required EventEntity Event { get; set; }
 }

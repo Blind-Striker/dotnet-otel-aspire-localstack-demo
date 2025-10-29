@@ -7,16 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\..\.dockerignore">
-      <Link>.dockerignore</Link>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Api"/>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\OpenTelemetry.Demo.Infrastructure\OpenTelemetry.Demo.Infrastructure.csproj"/>
     <ProjectReference Include="..\..\src\OpenTelemetry.Demo.ServiceDefaults\OpenTelemetry.Demo.ServiceDefaults.csproj"/>
   </ItemGroup>

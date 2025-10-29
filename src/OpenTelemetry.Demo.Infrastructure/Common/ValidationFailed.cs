@@ -7,7 +7,7 @@ public record ValidationFailed
         this.Errors = Errors;
     }
 
-    public ValidationFailed(ValidationFailure error) : this(new[] { error })
+    public ValidationFailed(ValidationFailure error) : this([error])
     {
     }
 

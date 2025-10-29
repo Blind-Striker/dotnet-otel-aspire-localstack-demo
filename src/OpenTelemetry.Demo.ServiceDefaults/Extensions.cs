@@ -22,12 +22,6 @@ public static class Extensions
             http.AddServiceDiscovery();
         });
 
-        // Uncomment the following to restrict the allowed schemes for service discovery.
-        // builder.Services.Configure<ServiceDiscoveryOptions>(options =>
-        // {
-        //     options.AllowedSchemes = ["https"];
-        // });
-
         return builder;
     }
 
@@ -40,58 +34,15 @@ public static class Extensions
             config.ReadFrom.Configuration(builder.Configuration)
                 .Enrich.FromLogContext()
                 .Enrich.WithMachineName()
-                .Enrich.WithProcessId()
-                .Enrich.WithProcessName()
-                .Enrich.WithThreadId()
-                .Enrich.WithSpan()
                 .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder()
                     .WithDefaultDestructurers()
-                    .WithDestructurers(new[] { new DbUpdateExceptionDestructurer() }))
+                    .WithDestructurers([new DbUpdateExceptionDestructurer()]))
                 .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
                 .WriteTo.Console()
                 .WriteTo.OpenTelemetry(options =>
                 {
                     options.IncludedData = IncludedData.TraceIdField | IncludedData.SpanIdField;
                     options.Endpoint = builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"];
-                    AddHeaders(options.Headers, builder.Configuration["OTEL_EXPORTER_OTLP_HEADERS"]);
-                    AddResourceAttributes(options.ResourceAttributes, builder.Configuration["OTEL_RESOURCE_ATTRIBUTES"]);
-
-                    void AddHeaders(IDictionary<string, string> headers, string headerConfig)
-                    {
-                        if (!string.IsNullOrEmpty(headerConfig))
-                        {
-                            foreach (var header in headerConfig.Split(','))
-                            {
-                                var parts = header.Split('=');
-
-                                if (parts.Length == 2)
-                                {
-                                    headers[parts[0]] = parts[1];
-                                }
-                                else
-                                {
-                                    throw new InvalidOperationException($"Invalid header format: {header}");
-                                }
-                            }
-                        }
-                    }
-
-                    void AddResourceAttributes(IDictionary<string, object> attributes, string attributeConfig)
-                    {
-                        if (!string.IsNullOrEmpty(attributeConfig))
-                        {
-                            var parts = attributeConfig.Split('=');
-
-                            if (parts.Length == 2)
-                            {
-                                attributes[parts[0]] = parts[1];
-                            }
-                            else
-                            {
-                                throw new InvalidOperationException($"Invalid resource attribute format: {attributeConfig}");
-                            }
-                        }
-                    }
                 });
         });
 
@@ -111,6 +62,10 @@ public static class Extensions
 
     public static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        var otlpExporterEndpoint = builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"] ?? throw new InvalidOperationException("OTEL_EXPORTER_OTLP_ENDPOINT is not set");
+
         builder.Services.AddOpenTelemetry()
             .WithMetrics(metrics =>
             {
@@ -120,13 +75,27 @@ public static class Extensions
             })
             .WithTracing(tracing =>
             {
-                tracing.AddAspNetCoreInstrumentation()
+                tracing.AddAspNetCoreInstrumentation(options =>
+                    {
+                        options.Filter = httpContext =>
+                        {
+                            var path = httpContext.Request.Path.Value ?? string.Empty;
+
+                            // Exclude infrastructure/non-business endpoints from tracing
+                            return !(
+                                path.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase) ||
+                                path.StartsWith("/_framework", StringComparison.OrdinalIgnoreCase) ||
+                                path.StartsWith("/_vs", StringComparison.OrdinalIgnoreCase) ||
+                                path.Equals("/favicon.ico", StringComparison.OrdinalIgnoreCase)
+                            );
+                        };
+                    })
                     .AddHttpClientInstrumentation(options =>
                         options.FilterHttpRequestMessage = request =>
-                            !request.RequestUri?.AbsoluteUri.Contains(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"], StringComparison.Ordinal) ?? true)
+                            !request.RequestUri?.AbsoluteUri.Contains(otlpExporterEndpoint, StringComparison.Ordinal) ?? true)
                     .AddAWSInstrumentation()
                     .AddAWSMessagingInstrumentation()
-                    .AddSource("OpenTelemetry.Demo.Infrastructure");
+                    .AddSource("OpenTelemetry.Demo.*");
             });
 
         builder.AddOpenTelemetryExporters();
@@ -149,8 +118,6 @@ public static class Extensions
     public static IHostApplicationBuilder AddDefaultHealthChecks(this IHostApplicationBuilder builder)
     {
         builder.Services.AddHealthChecks()
-
-            // Add a default liveness check to ensure app is responsive
             .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
         return builder;
@@ -158,6 +125,8 @@ public static class Extensions
 
     public static WebApplication MapDefaultEndpoints(this WebApplication app)
     {
+        ArgumentNullException.ThrowIfNull(app);
+
         // Uncomment the following line to enable the Prometheus endpoint (requires the OpenTelemetry.Exporter.Prometheus.AspNetCore package)
         // app.MapPrometheusScrapingEndpoint();
 

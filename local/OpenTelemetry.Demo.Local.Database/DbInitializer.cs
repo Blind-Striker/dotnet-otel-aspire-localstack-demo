@@ -17,7 +17,7 @@ public sealed class DbInitializer(IServiceProvider serviceProvider, IHostApplica
         }
         catch (Exception ex)
         {
-            activity?.RecordException(ex);
+            activity?.AddException(ex);
             throw;
         }
 
