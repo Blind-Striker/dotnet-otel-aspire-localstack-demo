@@ -1,7 +1,5 @@
 // Global using directives
 
-global using System.Diagnostics;
-
 global using Amazon.SimpleNotificationService;
 
 global using FluentValidation;
@@ -18,4 +16,3 @@ global using OpenTelemetry.Demo.Infrastructure.Domain.User.Models;
 global using OpenTelemetry.Demo.Infrastructure.Domain.User.Services;
 global using OpenTelemetry.Demo.Infrastructure.Integrations;
 global using OpenTelemetry.Demo.Infrastructure.Json;
-global using OpenTelemetry.Trace;

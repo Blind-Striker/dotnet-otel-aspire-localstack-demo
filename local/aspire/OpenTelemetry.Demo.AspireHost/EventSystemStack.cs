@@ -1,15 +1,6 @@
 ﻿#pragma warning disable IDE0130
 
 // ReSharper disable CheckNamespace
-
-using Amazon.CDK;
-using Amazon.CDK.AWS.IAM;
-using Amazon.CDK.AWS.SNS;
-using Amazon.CDK.AWS.SNS.Subscriptions;
-using Amazon.CDK.AWS.SQS;
-
-using Constructs;
-
 namespace AWSCDK.AppHost;
 
 internal sealed class EventSystemStack : Stack

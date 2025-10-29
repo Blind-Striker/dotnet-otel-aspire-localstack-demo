@@ -1,6 +1,4 @@
 ﻿#pragma warning disable RCS1170, S1144
-using System.Diagnostics.CodeAnalysis;
-
 namespace OpenTelemetry.Demo.Infrastructure.Domain.Event.Entities;
 
 public class RegistrationEntity

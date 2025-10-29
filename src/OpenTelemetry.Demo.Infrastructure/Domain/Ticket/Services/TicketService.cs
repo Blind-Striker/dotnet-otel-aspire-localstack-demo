@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Services;
+﻿namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Services;
 
 public class TicketService(EventSystemDbContext dbContext, ILogger<TicketService> logger, IValidator<CreateTicketRequest> validator) : ITicketService
 {

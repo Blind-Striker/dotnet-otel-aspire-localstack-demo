@@ -1,5 +1,3 @@
-using OpenTelemetry.Demo.Infrastructure.Common;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Entities;
+﻿namespace OpenTelemetry.Demo.Infrastructure.Domain.Ticket.Entities;
 
 public class TicketEntity
 {

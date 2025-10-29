@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace OpenTelemetry.Demo.Infrastructure.Domain.User.Services;
+﻿namespace OpenTelemetry.Demo.Infrastructure.Domain.User.Services;
 
 public class UserService(EventSystemDbContext dbContext, ILogger<UserService> logger, IValidator<CreateUserRequest> validator) : IUserService
 {
