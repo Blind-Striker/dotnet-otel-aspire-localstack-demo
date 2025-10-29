@@ -1,15 +1,34 @@
 # Tracing the Future: Enhanced Observability in .NET with OpenTelemetry
 
-This repository hosts the demonstration from the "Tracing the Future" presentation, delivered at [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications, and uses .NET Aspire with AWS and LocalStack for local development.
+This repository hosts a demonstration from the "Tracing the Future" presentation, delivered at [Devnot's .NET Conference 2024](https://dotnet.devnot.com/index.html). The project showcases practical implementations of OpenTelemetry to improve observability within .NET applications, and uses .NET Aspire with AWS and LocalStack for local development.
 
 The demo includes two main scenarios: HTTP and SNS/SQS, highlighting synchronous and asynchronous communication between microservices.
 
-## What's new
+## 🚀 Quick Start
 
-- AppHost uses [LocalStack.Aspire.Hosting](https://github.com/localstack-dotnet/dotnet-aspire-for-localstack) to provision and manage a LocalStack container as part of the Aspire composition.
-- AWS resources (SNS Topic + SQS Queue) are provisioned via an embedded AWS CDK stack and exposed to services through Aspire references.
-- Upgraded to AWS SDK for .NET v4 and [LocalStack.NET v2](https://github.com/localstack-dotnet/localstack-dotnet-client) for consistent client configuration with LocalStack.
-- Consolidated OpenTelemetry setup: ASP.NET Core, HttpClient, AWS SDK, and AWS.Messaging instrumentation with optional OTLP export.
+```bash
+# Prerequisites: .NET 9 SDK, Docker Desktop
+git clone https://github.com/Blind-Striker/dotnet-otel-aspire-localstack-demo
+cd dotnet-otel-aspire-localstack-demo
+dotnet run --project local/aspire/OpenTelemetry.Demo.AspireHost
+```
+
+Then:
+
+1. Open Aspire Dashboard (auto-launches in browser)
+2. Navigate to EventApi Swagger UI (URL shown in terminal)
+3. Create users → Register to events → View distributed traces in Aspire Dashboard!
+
+## Why This Project?
+
+This demo addresses common challenges in modern .NET cloud development:
+
+✅ **Local AWS Development** - LocalStack integration via [LocalStack.Aspire.Hosting](https://github.com/localstack-dotnet/dotnet-aspire-for-localstack) eliminates AWS costs and network latency
+✅ **Observable by Default** - Consolidated OpenTelemetry setup with ASP.NET Core, HttpClient, AWS SDK, and AWS.Messaging instrumentation
+✅ **Aspire Orchestration** - AppHost manages all services and containers; no docker-compose needed
+✅ **Infrastructure as Code** - Embedded AWS CDK stack provisions SNS topics and SQS queues, automatically wired to services
+✅ **Modern AWS SDK** - Upgraded to AWS SDK for .NET v4 and [LocalStack.NET v2](https://github.com/localstack-dotnet/localstack-dotnet-client) for consistent client configuration
+✅ **Two Integration Modes** - Compare synchronous (HTTP) vs asynchronous (SNS/SQS) distributed tracing patterns
 
 ## Architecture and Scenarios
 
@@ -144,13 +163,20 @@ Once the services are up:
 - Ensure that all configurations in `launchSettings.json` are set according to your local setup needs.
 - Experiment with different configurations to see how the system behaves under various conditions, especially when switching between database types or integration strategies.
 
-## Next Steps
+## Next Steps / Roadmap
 
-To further enhance and expand this project, upcoming enhancements are planned as follows:
+### Must-Fix Before Production
 
-- **Database Separation:** Transition from a single database setup to distinct databases for users, events, and tickets to optimize architecture and scalability.
-- **Detailed Setup Instructions:** Extend the setup guide to include Docker Compose and AWS CDK for more complex deployment scenarios.
-- **Observability Tools Integration:** Add comprehensive examples and setup guidance for tools like Jaeger, Prometheus, and Zipkin.
+- [ ] **Add Automated Tests** - Implement unit, integration, and [Aspire-specific tests](https://learn.microsoft.com/en-us/dotnet/aspire/testing/overview) to validate distributed scenarios
+- [ ] **Database Migrations** - Replace `EnsureCreated()` with proper EF Core migrations for production-safe schema management
+- [ ] **Database Separation** - Transition from a single database setup to distinct databases per service (users, events, tickets) for better isolation and scalability
+- [ ] **Error Handling** - Improve global exception handling and add retry policies for AWS operations
+
+### Enhancements
+
+- [ ] **Observability Tools Integration** - Add examples for external OTLP collectors (Jaeger, Prometheus, Zipkin)
+- [ ] **Detailed Setup Instructions** - Extend documentation to include AWS CDK customization guidance and troubleshooting
+- [ ] **Additional Scenarios** - Demonstrate saga patterns, compensation logic, or CQRS with event sourcing
 
 Additionally, the [localstack-dotnet](https://github.com/localstack-dotnet) organization will develop more extensive example projects that leverage technologies such as Aspire, OpenTelemetry, AWS, and [LocalStack.NET](https://github.com/localstack-dotnet/localstack-dotnet-client).
 
