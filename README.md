@@ -23,12 +23,12 @@ Then:
 
 This demo addresses common challenges in modern .NET cloud development:
 
-✅ **Local AWS Development** - LocalStack integration via [LocalStack.Aspire.Hosting](https://github.com/localstack-dotnet/dotnet-aspire-for-localstack) eliminates AWS costs and network latency
-✅ **Observable by Default** - Consolidated OpenTelemetry setup with ASP.NET Core, HttpClient, AWS SDK, and AWS.Messaging instrumentation
-✅ **Aspire Orchestration** - AppHost manages all services and containers; no docker-compose needed
-✅ **Infrastructure as Code** - Embedded AWS CDK stack provisions SNS topics and SQS queues, automatically wired to services
-✅ **Modern AWS SDK** - Upgraded to AWS SDK for .NET v4 and [LocalStack.NET v2](https://github.com/localstack-dotnet/localstack-dotnet-client) for consistent client configuration
-✅ **Two Integration Modes** - Compare synchronous (HTTP) vs asynchronous (SNS/SQS) distributed tracing patterns
+- ✅ **Local AWS Development** - LocalStack integration via [LocalStack.Aspire.Hosting](https://github.com/localstack-dotnet/dotnet-aspire-for-localstack) eliminates AWS costs and network latency
+- ✅ **Observable by Default** - Consolidated OpenTelemetry setup with ASP.NET Core, HttpClient, AWS SDK, and AWS.Messaging instrumentation
+- ✅ **Aspire Orchestration** - AppHost manages all services and containers; no docker-compose needed
+- ✅ **Infrastructure as Code** - Embedded AWS CDK stack provisions SNS topics and SQS queues, automatically wired to services
+- ✅ **Modern AWS SDK** - Upgraded to AWS SDK for .NET v4 and [LocalStack.NET v2](https://github.com/localstack-dotnet/localstack-dotnet-client) for consistent client configuration
+- ✅ **Two Integration Modes** - Compare synchronous (HTTP) vs asynchronous (SNS/SQS) distributed tracing patterns
 
 ## Architecture and Scenarios
 
