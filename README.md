@@ -57,7 +57,7 @@ Demonstrates  asynchronous communication using AWS SNS for notifications and SQS
 
 ## Key Technologies and Packages
 
-- [Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview): A cloud-ready stack for building observable, distributed applications in .NET.
+- [Aspire](https://aspire.dev/docs/): A cloud-ready stack for building observable, distributed applications in .NET.
 - [LocalStack](https://www.localstack.cloud/): Provides a local development environment for AWS cloud stack, allowing for full functionality without requiring actual AWS services.
 - [OpenTelemetry](https://opentelemetry.io/): An open-source observability framework for cloud-native software, providing metrics, logs, and traces for applications.
 - [AWS.Messaging](https://github.com/awslabs/aws-dotnet-messaging): Facilitates message processing with AWS services like SQS, SNS, and EventBridge.
@@ -75,7 +75,7 @@ Follow these steps to set up the project locally:
 Ensure the following prerequisites are met before proceeding with the local setup:
 
 - **.NET 10.0:** Install from [official .NET download page](https://dotnet.microsoft.com/en-us/download)
-- **.NET Aspire:** Uses the new NuGet SDK model for simplified setup. See [.NET Aspire setup and tooling](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling) for more information.
+- **.NET Aspire:** Refer to the [Aspire Get Started](https://aspire.dev/get-started/prerequisites/) for setup instructions.
 - **Container Runtime:** An OCI-compliant container runtime like Docker Desktop or Podman is necessary. For more information, refer to the [Container Runtime documentation](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&pivots=visual-studio#container-runtime).
 - **IDE or Code Editor:** While optional, it's beneficial to use:
   - Visual Studio 2022 version 17.13 or higher.
@@ -167,7 +167,7 @@ Once the services are up:
 
 ### Must-Fix Before Production
 
-- [ ] **Add Automated Tests** - Implement unit, integration, and [Aspire-specific tests](https://learn.microsoft.com/en-us/dotnet/aspire/testing/overview) to validate distributed scenarios
+- [ ] **Add Automated Tests** - Implement unit, integration, and [Aspire-specific tests](https://aspire.dev/testing/overview/) to validate distributed scenarios
 - [ ] **Database Migrations** - Replace `EnsureCreated()` with proper EF Core migrations for production-safe schema management
 - [ ] **Database Separation** - Transition from a single database setup to distinct databases per service (users, events, tickets) for better isolation and scalability
 - [ ] **Error Handling** - Improve global exception handling and add retry policies for AWS operations
