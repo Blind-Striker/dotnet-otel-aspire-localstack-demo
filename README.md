@@ -16,7 +16,7 @@ dotnet run --project local/aspire/OpenTelemetry.Demo.AspireHost
 Then:
 
 1. Open Aspire Dashboard (auto-launches in browser)
-2. Navigate to EventApi Swagger UI (URL shown in terminal)
+2. Navigate to EventApi Scalar UI (URL shown in terminal)
 3. Create users → Register to events → View distributed traces in Aspire Dashboard!
 
 ## Why This Project?
@@ -133,7 +133,7 @@ dotnet run --launch-profile "http"
 Once the services are up:
 
 - The Aspire dashboard will be accessible, providing an overview of service health and metrics.
-- You can also access the EventApi's Swagger UI to interact with the API directly. The URL to the Swagger UI will be displayed in the terminal or in the IDE's output window.
+- You can also access the EventApi's Scalar UI to interact with the API directly. The URL to the Scalar UI will be displayed in the terminal or in the IDE's output window.
 
 ### LocalStack and AWS Resources
 
@@ -147,7 +147,7 @@ Once the services are up:
 ### Interacting with the API
 
 - Create Users:
-  - Use the `POST /user` endpoint to create new users. This can be done via the Swagger UI or using a tool like Postman.
+  - Use the `POST /user` endpoint to create new users. This can be done via the Scalar UI or using a tool like Postman.
 - Register Users to Events:
   - With users created, use the `POST /event/register` endpoint to register these users to events. Events are pre-seeded and available for registration.
   - In `aws` mode, EventApi publishes a message to SNS; TicketProcessor consumes from SQS and creates the ticket.

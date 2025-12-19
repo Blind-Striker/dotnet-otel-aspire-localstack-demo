@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
     <PackageReference Include="AWSSDK.Core"/>
     <PackageReference Include="AWSSDK.SimpleNotificationService"/>
     <PackageReference Include="AWS.Messaging"/>
 
     <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
-    <PackageReference Include="Swashbuckle.AspNetCore"/>
+    <PackageReference Include="Scalar.AspNetCore"/>
 
     <PackageReference Include="LocalStack.Client"/>
     <PackageReference Include="LocalStack.Client.Extensions"/>

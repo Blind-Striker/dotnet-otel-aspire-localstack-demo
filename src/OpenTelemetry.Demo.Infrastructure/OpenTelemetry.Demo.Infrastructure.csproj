@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
     <PackageReference Include="AWSSDK.Core"/>
     <PackageReference Include="AWSSDK.SQS"/>
     <PackageReference Include="AWSSDK.SimpleNotificationService"/>

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
     <PackageReference Include="Microsoft.Extensions.Hosting"/>
 
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"/>

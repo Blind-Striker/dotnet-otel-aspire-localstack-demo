@@ -1,3 +1,4 @@
+using Scalar.AspNetCore;
 using static System.Environment;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +8,7 @@ var configuration = builder.Configuration;
 builder.AddServiceDefaults();
 builder.AddEventSystemDbContext();
 
-services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+services.AddOpenApi();
 
 services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoResolver = EventSystemJsonSerializerContext.Default);
 services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
@@ -54,8 +54,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
@@ -68,8 +68,7 @@ app.MapPost("/user", async (IUserService userService, CreateUserRequest request)
            model => TypedResults.CreatedAtRoute(model, "GetUser", new { id = model.Id }),
            validationFailed => TypedResults.BadRequest(validationFailed.Errors.ToJson()));
    })
-   .WithName("CreateUser")
-   .WithOpenApi();
+   .WithName("CreateUser");
 
 app.MapGet("/user/{id:int}", async (IUserService userService, int id) =>
    {
@@ -79,8 +78,7 @@ app.MapGet("/user/{id:int}", async (IUserService userService, int id) =>
            TypedResults.Ok,
            _ => TypedResults.NotFound());
    })
-   .WithName("GetUser")
-   .WithOpenApi();
+   .WithName("GetUser");
 
 app.MapGet("/event", async (IEventService eventService) =>
    {
@@ -88,8 +86,7 @@ app.MapGet("/event", async (IEventService eventService) =>
 
        return result.Match<IResult>(TypedResults.Ok);
    })
-   .WithName("GetEvents")
-   .WithOpenApi();
+   .WithName("GetEvents");
 
 app.MapGet("/event/{id:int}", async (IEventService eventService, int id) =>
    {
@@ -99,8 +96,7 @@ app.MapGet("/event/{id:int}", async (IEventService eventService, int id) =>
            TypedResults.Ok,
            _ => TypedResults.NotFound());
    })
-   .WithName("GetEvent")
-   .WithOpenApi();
+   .WithName("GetEvent");
 
 app.MapPost("/event/register", async (IEventService eventService, RegisterToEventRequest request) =>
    {
@@ -113,7 +109,6 @@ app.MapPost("/event/register", async (IEventService eventService, RegisterToEven
            _ => TypedResults.NotFound(),
            validationFailed => TypedResults.BadRequest(validationFailed.Errors.ToJson()));
    })
-   .WithName("AttendEvent")
-   .WithOpenApi();
+   .WithName("AttendEvent");
 
 await app.RunAsync();

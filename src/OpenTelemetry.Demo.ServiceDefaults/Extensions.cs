@@ -83,7 +83,7 @@ public static class Extensions
 
                             // Exclude infrastructure/non-business endpoints from tracing
                             return !(
-                                path.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase) ||
+                                path.StartsWith("/scalar", StringComparison.OrdinalIgnoreCase) ||
                                 path.StartsWith("/_framework", StringComparison.OrdinalIgnoreCase) ||
                                 path.StartsWith("/_vs", StringComparison.OrdinalIgnoreCase) ||
                                 path.Equals("/favicon.ico", StringComparison.OrdinalIgnoreCase)

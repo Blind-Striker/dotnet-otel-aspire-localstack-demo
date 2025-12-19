@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
-    <PackageReference Include="Swashbuckle.AspNetCore"/>
+    <PackageReference Include="Scalar.AspNetCore"/>
 
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
   </ItemGroup>

@@ -1,8 +1,8 @@
 <Project>
 
   <PropertyGroup>
-    <NetCurrent>net9.0</NetCurrent>
-    <LangVersion>13.0</LangVersion>
+    <NetCurrent>net10.0</NetCurrent>
+    <LangVersion>14.0</LangVersion>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <ImplicitUsings>enable</ImplicitUsings>

@@ -1,10 +1,11 @@
+using Scalar.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 builder.AddEventSystemDbContext();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 
 builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoResolver = EventSystemJsonSerializerContext.Default);
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
@@ -15,8 +16,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
@@ -30,7 +31,6 @@ app.MapPost("/ticket", async (ITicketService ticketService, CreateTicketRequest 
            validationFailed => TypedResults.BadRequest(validationFailed.Errors.ToJson()),
            _ => TypedResults.NotFound());
    })
-   .WithName("CreateTicket")
-   .WithOpenApi();
+   .WithName("CreateTicket");
 
 await app.RunAsync();

@@ -4,71 +4,71 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- third-party analyzers -->
-    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.238"/>
+    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.263"/>
     <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="5.0.0-1.25277.114"/>
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0"/>
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.101"/>
     <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15"/>
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.14.1"/>
-    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.14.1"/>
-    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.14.1"/>
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.15.0"/>
+    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.15.0"/>
+    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.15.0"/>
     <PackageVersion Include="SecurityCodeScan.VS2019" Version="5.6.7"/>
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.15.0.120848"/>
-    <PackageVersion Include="xunit.analyzers" Version="1.24.0"/>
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.17.0.131074"/>
+    <PackageVersion Include="xunit.analyzers" Version="1.26.0"/>
     <!-- Microsoft AspNetCore dependencies -->
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.10"/>
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.1"/>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10"/>
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.10"/>
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.10.0"/>
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.5.2"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1"/>
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.1"/>
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.1.0"/>
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.1.0"/>
     <!-- Open Telemetry dependencies -->
     <PackageVersion Include="OpenTelemetry" Version="1.13.1"/>
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.13.1"/>
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.13.1"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AWS" Version="1.12.1"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.13.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.13.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.13.0"/>
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0"/>
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AWS" Version="1.14.1"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.14.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.14.0"/>
     <PackageVersion Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.13.0-beta.1"/>
     <!-- Serilog Depedencies -->
     <PackageVersion Include="Serilog" Version="4.3.0"/>
-    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0"/>
+    <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0"/>
     <PackageVersion Include="Serilog.Enrichers.Context" Version="4.6.5"/>
     <PackageVersion Include="Serilog.Exceptions" Version="8.4.0"/>
     <PackageVersion Include="Serilog.Exceptions.EntityFrameworkCore" Version="8.4.0"/>
-    <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0"/>
+    <PackageVersion Include="Serilog.Sinks.Console" Version="6.1.1"/>
     <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="4.2.0"/>
     <!-- Aspire depedencies-->
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.5.2"/>
-    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="9.5.2"/>
-    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.5.2"/>
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.0"/>
+    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="13.1.0"/>
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.1.0"/>
     <PackageVersion Include="Aspire.Hosting.AWS" Version="9.3.0"/>
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.5.2"/>
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.5.2"/>
-    <PackageVersion Include="LocalStack.Aspire.Hosting" Version="9.5.3"/>
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.0"/>
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.1.0"/>
+    <PackageVersion Include="LocalStack.Aspire.Hosting" Version="13.1.0"/>
     <!-- AWS depencies -->
-    <PackageVersion Include="AWSSDK.Core" Version="4.0.1.3"/>
+    <PackageVersion Include="AWSSDK.Core" Version="4.0.3.6"/>
     <PackageVersion Include="AWSSDK.CloudFormation" Version="4.0.5.2"/>
-    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="4.0.2.2"/>
-    <PackageVersion Include="AWSSDK.SQS" Version="4.0.1.13"/>
-    <PackageVersion Include="AWS.Messaging" Version="1.0.1"/>
+    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="4.0.2.10"/>
+    <PackageVersion Include="AWSSDK.SQS" Version="4.0.2.8"/>
+    <PackageVersion Include="AWS.Messaging" Version="1.0.2"/>
     <PackageVersion Include="AWS.Messaging.Telemetry.OpenTelemetry" Version="1.0.0"/>
     <!-- 3rd dependencies -->
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0"/>
     <PackageVersion Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0"/>
     <PackageVersion Include="AspNetCore.HealthChecks.Uris" Version="9.0.0"/>
-    <PackageVersion Include="FluentValidation" Version="12.0.0"/>
-    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0"/>
+    <PackageVersion Include="FluentValidation" Version="12.1.1"/>
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1"/>
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0"/>
+    <PackageVersion Include="OneOf" Version="3.0.271"/>
+    <PackageVersion Include="OneOf.SourceGenerator" Version="3.0.271"/>
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.11.8"/>
     <!-- LocalStack depedencies -->
     <PackageVersion Include="LocalStack.Client" Version="2.0.0"/>
     <PackageVersion Include="LocalStack.Client.Extensions" Version="2.0.0"/>
-    <PackageVersion Include="OneOf" Version="3.0.271"/>
-    <PackageVersion Include="OneOf.SourceGenerator" Version="3.0.271"/>
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.3"/>
     <!-- Testing depdencies-->
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0"/>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1"/>
     <PackageVersion Include="Moq" Version="4.20.72"/>
     <PackageVersion Include="xunit" Version="2.9.3"/>
     <PackageVersion Include="xunit.runner.console" Version="2.9.3"/>
