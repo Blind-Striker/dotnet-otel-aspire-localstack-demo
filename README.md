@@ -7,7 +7,7 @@ The demo includes two main scenarios: HTTP and SNS/SQS, highlighting synchronous
 ## 🚀 Quick Start
 
 ```bash
-# Prerequisites: .NET 9 SDK, Docker Desktop
+# Prerequisites: .NET 10 SDK, Docker Desktop
 git clone https://github.com/Blind-Striker/dotnet-otel-aspire-localstack-demo
 cd dotnet-otel-aspire-localstack-demo
 dotnet run --project local/aspire/OpenTelemetry.Demo.AspireHost
@@ -74,11 +74,11 @@ Follow these steps to set up the project locally:
 
 Ensure the following prerequisites are met before proceeding with the local setup:
 
-- **.NET 9.0:** Install from [official .NET download page](https://dotnet.microsoft.com/en-us/download)
+- **.NET 10.0:** Install from [official .NET download page](https://dotnet.microsoft.com/en-us/download)
 - **.NET Aspire:** Uses the new NuGet SDK model for simplified setup. See [.NET Aspire setup and tooling](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling) for more information.
 - **Container Runtime:** An OCI-compliant container runtime like Docker Desktop or Podman is necessary. For more information, refer to the [Container Runtime documentation](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&pivots=visual-studio#container-runtime).
 - **IDE or Code Editor:** While optional, it's beneficial to use:
-  - Visual Studio 2022 version 17.11 or higher.
+  - Visual Studio 2022 version 17.13 or higher.
   - Visual Studio Code.
   - JetBrains Rider with the [.NET Aspire plugin](https://plugins.jetbrains.com/plugin/23289--net-aspire) installed.
 
