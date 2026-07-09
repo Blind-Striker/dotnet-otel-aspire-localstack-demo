@@ -23,3 +23,4 @@ global using Serilog.Exceptions;
 global using Serilog.Exceptions.Core;
 global using Serilog.Exceptions.EntityFrameworkCore.Destructurers;
 global using Serilog.Sinks.OpenTelemetry;
+global using Serilog.Sinks.SystemConsole.Themes;

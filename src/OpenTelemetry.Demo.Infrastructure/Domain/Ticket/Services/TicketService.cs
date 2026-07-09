@@ -59,7 +59,9 @@ public class TicketService(EventSystemDbContext dbContext, ILogger<TicketService
         activity?.AddTag(nameof(ticket.EventId), ticket.EventId.ToString(CultureInfo.InvariantCulture));
 
         // Simulate email sending by waiting for between 10 and 20 milliseconds
+#pragma warning disable S2245
         var random = new Random();
+#pragma warning restore S2245
         await Task.Delay(random.Next(10, 20));
 
         // Log email sending in console for demo purposes

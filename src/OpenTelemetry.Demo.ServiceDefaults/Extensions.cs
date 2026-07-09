@@ -38,7 +38,7 @@ public static class Extensions
                     .WithDefaultDestructurers()
                     .WithDestructurers([new DbUpdateExceptionDestructurer()]))
                 .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
-                .WriteTo.Console()
+                .WriteTo.Console(theme: ConsoleTheme.None)
                 .WriteTo.OpenTelemetry(options =>
                 {
                     options.IncludedData = IncludedData.TraceIdField | IncludedData.SpanIdField;
@@ -103,7 +103,9 @@ public static class Extensions
         return builder;
     }
 
+#pragma warning disable S3241
     private static IHostApplicationBuilder AddOpenTelemetryExporters(this IHostApplicationBuilder builder)
+#pragma warning restore S3241
     {
         var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
 

@@ -4,35 +4,39 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- third-party analyzers -->
-    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.263"/>
-    <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="5.0.0-1.25277.114"/>
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.101"/>
-    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15"/>
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.122"/>
+    <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="5.6.0"/>
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.301"/>
+    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="18.7.23"/>
     <PackageVersion Include="Roslynator.Analyzers" Version="4.15.0"/>
     <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.15.0"/>
     <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="4.15.0"/>
     <PackageVersion Include="SecurityCodeScan.VS2019" Version="5.6.7"/>
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.17.0.131074"/>
-    <PackageVersion Include="xunit.analyzers" Version="1.26.0"/>
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.28.0.143324"/>
+    <PackageVersion Include="xunit.analyzers" Version="1.27.0"/>
     <!-- Microsoft AspNetCore dependencies -->
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.1"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1"/>
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.1"/>
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.1.0"/>
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.1.0"/>
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.9"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.9"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.9"/>
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.9"/>
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.7.0"/>
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.7.0"/>
+    <!-- Pinned to latest 2.x: AspNetCore.OpenApi 10.0.9's XML-comment source generator writes to the
+         settable IOpenApiMediaType.Example, which became read-only in Microsoft.OpenApi 3.x (CS0200).
+         2.7.5+ also patches CVE-2026-49451 (GHSA-v5pm-xwqc-g5wc). -->
+    <PackageVersion Include="Microsoft.OpenApi" Version="2.10.0" />
     <!-- Open Telemetry dependencies -->
-    <PackageVersion Include="OpenTelemetry" Version="1.13.1"/>
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AWS" Version="1.14.1"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.13.0-beta.1"/>
+    <PackageVersion Include="OpenTelemetry" Version="1.16.0"/>
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.16.0"/>
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.16.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AWS" Version="1.16.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.16.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.16.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.16.0"/>
     <!-- Serilog Depedencies -->
-    <PackageVersion Include="Serilog" Version="4.3.0"/>
+    <PackageVersion Include="Serilog" Version="4.3.1"/>
     <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0"/>
     <PackageVersion Include="Serilog.Enrichers.Context" Version="4.6.5"/>
     <PackageVersion Include="Serilog.Exceptions" Version="8.4.0"/>
@@ -40,19 +44,19 @@
     <PackageVersion Include="Serilog.Sinks.Console" Version="6.1.1"/>
     <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="4.2.0"/>
     <!-- Aspire depedencies-->
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.0"/>
-    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="13.1.0"/>
-    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.1.0"/>
-    <PackageVersion Include="Aspire.Hosting.AWS" Version="9.3.0"/>
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.0"/>
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.1.0"/>
-    <PackageVersion Include="LocalStack.Aspire.Hosting" Version="13.1.0"/>
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.4.6"/>
+    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="13.4.6"/>
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.4.6"/>
+    <PackageVersion Include="Aspire.Hosting.AWS" Version="13.4.0"/>
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.4.6"/>
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.4.6"/>
+    <PackageVersion Include="LocalStack.Aspire.Hosting" Version="13.4.0"/>
     <!-- AWS depencies -->
-    <PackageVersion Include="AWSSDK.Core" Version="4.0.3.6"/>
-    <PackageVersion Include="AWSSDK.CloudFormation" Version="4.0.5.2"/>
-    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="4.0.2.10"/>
-    <PackageVersion Include="AWSSDK.SQS" Version="4.0.2.8"/>
-    <PackageVersion Include="AWS.Messaging" Version="1.0.2"/>
+    <PackageVersion Include="AWSSDK.Core" Version="4.0.100.3"/>
+    <PackageVersion Include="AWSSDK.CloudFormation" Version="4.0.101.3"/>
+    <PackageVersion Include="AWSSDK.SimpleNotificationService" Version="4.0.100.3"/>
+    <PackageVersion Include="AWSSDK.SQS" Version="4.0.100.3"/>
+    <PackageVersion Include="AWS.Messaging" Version="1.3.0"/>
     <PackageVersion Include="AWS.Messaging.Telemetry.OpenTelemetry" Version="1.0.0"/>
     <!-- 3rd dependencies -->
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0"/>
@@ -60,15 +64,15 @@
     <PackageVersion Include="AspNetCore.HealthChecks.Uris" Version="9.0.0"/>
     <PackageVersion Include="FluentValidation" Version="12.1.1"/>
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1"/>
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0"/>
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.2"/>
     <PackageVersion Include="OneOf" Version="3.0.271"/>
     <PackageVersion Include="OneOf.SourceGenerator" Version="3.0.271"/>
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.11.8"/>
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.16.11"/>
     <!-- LocalStack depedencies -->
     <PackageVersion Include="LocalStack.Client" Version="2.0.0"/>
     <PackageVersion Include="LocalStack.Client.Extensions" Version="2.0.0"/>
     <!-- Testing depdencies-->
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1"/>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.7.0"/>
     <PackageVersion Include="Moq" Version="4.20.72"/>
     <PackageVersion Include="xunit" Version="2.9.3"/>
     <PackageVersion Include="xunit.runner.console" Version="2.9.3"/>
